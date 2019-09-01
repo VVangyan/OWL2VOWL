@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.KwSemanticsMapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.KwSemantics">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Semantics_Code" jdbcType="VARCHAR" property="semanticsCode" />
+    <result column="Semantics_Name" jdbcType="VARCHAR" property="semanticsName" />
+    <result column="Relation_Type" jdbcType="VARCHAR" property="relationType" />
+    <result column="Relation_Semantics_Code" jdbcType="VARCHAR" property="relationSemanticsCode" />
+    <result column="Relation_Semantics_Name" jdbcType="VARCHAR" property="relationSemanticsName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, Semantics_Code, Semantics_Name, Relation_Type, Relation_Semantics_Code, Relation_Semantics_Name
+  </sql>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.KwSemanticsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kw_semantics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from kw_semantics
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from kw_semantics
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.KwSemanticsExample">
+    delete from kw_semantics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="owl2vowl.knowledgebase.entity.KwSemantics">
+    insert into kw_semantics (ID, Semantics_Code, Semantics_Name, 
+      Relation_Type, Relation_Semantics_Code, Relation_Semantics_Name
+      )
+    values (#{id,jdbcType=INTEGER}, #{semanticsCode,jdbcType=VARCHAR}, #{semanticsName,jdbcType=VARCHAR}, 
+      #{relationType,jdbcType=VARCHAR}, #{relationSemanticsCode,jdbcType=VARCHAR}, #{relationSemanticsName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="owl2vowl.knowledgebase.entity.KwSemantics">
+    insert into kw_semantics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="semanticsCode != null">
+        Semantics_Code,
+      </if>
+      <if test="semanticsName != null">
+        Semantics_Name,
+      </if>
+      <if test="relationType != null">
+        Relation_Type,
+      </if>
+      <if test="relationSemanticsCode != null">
+        Relation_Semantics_Code,
+      </if>
+      <if test="relationSemanticsName != null">
+        Relation_Semantics_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="semanticsCode != null">
+        #{semanticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="semanticsName != null">
+        #{semanticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null">
+        #{relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="relationSemanticsCode != null">
+        #{relationSemanticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="relationSemanticsName != null">
+        #{relationSemanticsName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.KwSemanticsExample" resultType="java.lang.Long">
+    select count(*) from kw_semantics
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update kw_semantics
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.semanticsCode != null">
+        Semantics_Code = #{record.semanticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.semanticsName != null">
+        Semantics_Name = #{record.semanticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationType != null">
+        Relation_Type = #{record.relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationSemanticsCode != null">
+        Relation_Semantics_Code = #{record.relationSemanticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationSemanticsName != null">
+        Relation_Semantics_Name = #{record.relationSemanticsName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update kw_semantics
+    set ID = #{record.id,jdbcType=INTEGER},
+      Semantics_Code = #{record.semanticsCode,jdbcType=VARCHAR},
+      Semantics_Name = #{record.semanticsName,jdbcType=VARCHAR},
+      Relation_Type = #{record.relationType,jdbcType=VARCHAR},
+      Relation_Semantics_Code = #{record.relationSemanticsCode,jdbcType=VARCHAR},
+      Relation_Semantics_Name = #{record.relationSemanticsName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="owl2vowl.knowledgebase.entity.KwSemantics">
+    update kw_semantics
+    <set>
+      <if test="semanticsCode != null">
+        Semantics_Code = #{semanticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="semanticsName != null">
+        Semantics_Name = #{semanticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="relationType != null">
+        Relation_Type = #{relationType,jdbcType=VARCHAR},
+      </if>
+      <if test="relationSemanticsCode != null">
+        Relation_Semantics_Code = #{relationSemanticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="relationSemanticsName != null">
+        Relation_Semantics_Name = #{relationSemanticsName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="owl2vowl.knowledgebase.entity.KwSemantics">
+    update kw_semantics
+    set Semantics_Code = #{semanticsCode,jdbcType=VARCHAR},
+      Semantics_Name = #{semanticsName,jdbcType=VARCHAR},
+      Relation_Type = #{relationType,jdbcType=VARCHAR},
+      Relation_Semantics_Code = #{relationSemanticsCode,jdbcType=VARCHAR},
+      Relation_Semantics_Name = #{relationSemanticsName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

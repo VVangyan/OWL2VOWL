@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.KwDocumentMapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.KwDocument">
+    <id column="DOCUMENT_ID" jdbcType="INTEGER" property="documentId" />
+    <result column="DOCUMENT_TITLE" jdbcType="VARCHAR" property="documentTitle" />
+    <result column="DOCUMENT_ORIGIN" jdbcType="VARCHAR" property="documentOrigin" />
+    <result column="DOCUMENT_AUTHOR" jdbcType="VARCHAR" property="documentAuthor" />
+    <result column="DOCUMENT_UPLOAD_DATE" jdbcType="DATE" property="documentUploadDate" />
+    <result column="DOCUMENT_ABSTRACT" jdbcType="VARCHAR" property="documentAbstract" />
+    <result column="DOCUMENT_KEYWORD" jdbcType="VARCHAR" property="documentKeyword" />
+    <result column="DOCUMENT_TYPE" jdbcType="VARCHAR" property="documentType" />
+    <result column="DOCUMENT_SIZE" jdbcType="INTEGER" property="documentSize" />
+    <result column="DOCUMENT_MARKS" jdbcType="VARCHAR" property="documentMarks" />
+    <result column="DOCUMENT_NAME" jdbcType="VARCHAR" property="documentName" />
+    <result column="DOCUMENT_SAVEURL" jdbcType="VARCHAR" property="documentSaveurl" />
+    <result column="DOCUMENT_CATEGORY" jdbcType="INTEGER" property="documentCategory" />
+    <result column="DOCUMENT_LABLE" jdbcType="INTEGER" property="documentLable" />
+    <result column="DOCUMENT_STATE" jdbcType="INTEGER" property="documentState" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+  </resultMap>
+  <resultMap id="newResultMap" type="owl2vowl.knowledgebase.entity.KwDocument">
+    <id column="DOCUMENT_ID" jdbcType="INTEGER" property="documentId" />
+    <result column="DOCUMENT_TITLE" jdbcType="VARCHAR" property="documentTitle" />
+    <result column="DOCUMENT_ORIGIN" jdbcType="VARCHAR" property="documentOrigin" />
+    <result column="DOCUMENT_AUTHOR" jdbcType="VARCHAR" property="documentAuthor" />
+    <result column="DOCUMENT_UPLOAD_DATE" jdbcType="DATE" property="documentUploadDate" />
+    <result column="DOCUMENT_ABSTRACT" jdbcType="VARCHAR" property="documentAbstract" />
+    <result column="DOCUMENT_KEYWORD" jdbcType="VARCHAR" property="documentKeyword" />
+    <result column="DOCUMENT_TYPE" jdbcType="VARCHAR" property="documentType" />
+    <result column="DOCUMENT_SIZE" jdbcType="INTEGER" property="documentSize" />
+    <result column="DOCUMENT_MARKS" jdbcType="VARCHAR" property="documentMarks" />
+    <result column="DOCUMENT_NAME" jdbcType="VARCHAR" property="documentName" />
+    <result column="DOCUMENT_SAVEURL" jdbcType="VARCHAR" property="documentSaveurl" />
+    <result column="DOCUMENT_CATEGORY" jdbcType="INTEGER" property="documentCategory" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="DOCUMENT_LABLE" jdbcType="INTEGER" property="documentLable" />
+    <result column="DOCUMENT_STATE" jdbcType="INTEGER" property="documentState" />
+    <collection property="files" ofType="owl2vowl.knowledgebase.entity.FileInfos"  column="DOCUMENT_ID">
+    	<id column="FILEDID" jdbcType="INTEGER" property="filedid" />
+    	<result column="DOCUMENTNAME" jdbcType="VARCHAR" property="documentName" />
+    	<result column="DOCUMENTSAVEURL" jdbcType="VARCHAR" property="documentSaveurl" />
+    </collection>
+    <collection property="lableInfos" ofType="owl2vowl.knowledgebase.entity.KwDocumentLabelMiddle"  column="DOCUMENT_ID">
+    	<id column="ID" jdbcType="INTEGER" property="id" />
+    	<result column="LABLE_NAME" jdbcType="VARCHAR" property="lableName" />
+    	<result column="LABLE_ID" jdbcType="INTEGER" property="lableId" />
+    </collection>
+  </resultMap>
+  <resultMap id="readResultMap" type="owl2vowl.knowledgebase.entity.Read">
+    <result column="READ01" jdbcType="VARCHAR" property="read01" />
+    <result column="READ02" jdbcType="VARCHAR" property="read02" />
+    <result column="READ03" jdbcType="VARCHAR" property="read03" />
+    <result column="READ04" jdbcType="VARCHAR" property="read04" />
+    <result column="READ05" jdbcType="VARCHAR" property="read05" />
+    <result column="READ06" jdbcType="VARCHAR" property="read06" />
+    <result column="READ07" jdbcType="VARCHAR" property="read07" />
+    <result column="READ08" jdbcType="VARCHAR" property="read08" />
+    <result column="READ09" jdbcType="VARCHAR" property="read09" />
+    <result column="READ010" jdbcType="VARCHAR" property="read010" />
+    <result column="READ011" jdbcType="VARCHAR" property="read011" />
+    <result column="READ012" jdbcType="VARCHAR" property="read012" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DOCUMENT_ID, DOCUMENT_TITLE, DOCUMENT_ORIGIN, DOCUMENT_AUTHOR, DOCUMENT_UPLOAD_DATE, 
+    DOCUMENT_ABSTRACT, DOCUMENT_KEYWORD, DOCUMENT_TYPE, DOCUMENT_SIZE, DOCUMENT_MARKS, 
+    DOCUMENT_NAME, DOCUMENT_SAVEURL, DOCUMENT_CATEGORY, DOCUMENT_LABLE, DOCUMENT_STATE, 
+    USER_NAME, DEPARTMENT_NAME
+  </sql>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.KwDocumentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kw_document
+    where 1=1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    and USER_NAME=#{userName,jdbcType=VARCHAR}
+    and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from kw_document
+    where DOCUMENT_ID = #{documentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectPathResult" parameterType="owl2vowl.knowledgebase.entity.KwDocument" resultMap="newResultMap">
+			SELECT
+				KD.*,
+				KM.*
+			FROM
+				(
+				SELECT
+					kd.DOCUMENT_ID,
+					kd.DOCUMENT_ORIGIN,
+					kd.DOCUMENT_AUTHOR,
+					kd.DOCUMENT_UPLOAD_DATE,
+					kd.DOCUMENT_ABSTRACT,
+					kd.DOCUMENT_KEYWORD,
+					kd.DOCUMENT_TYPE,
+					kd.DOCUMENT_SIZE,
+					kd.DOCUMENT_MARKS,
+					kd.DOCUMENT_CATEGORY,
+					kd.DOCUMENT_LABLE,
+					kd.DOCUMENT_STATE,
+					kl.FILED_ID AS FILEDID,
+					kl.FILENAME AS DOCUMENTNAME,
+					kl.SAVEURL AS DOCUMENTSAVEURL
+				FROM
+					kw_document kd
+				JOIN kw_file_log kl ON kd.DOCUMENT_ID = kl.DOUCMENT_ID
+				WHERE kd.DOCUMENT_STATE=#{documentState,jdbcType=INTEGER}
+				and kd.USER_NAME=#{userName,jdbcType=VARCHAR}
+                and kd.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}
+				) KD
+	 			JOIN KW_DOCUMENT_LABEL_MIDDLE KM ON KM.DOCUMENT_ID = KD.DOCUMENT_ID
+	 			ORDER BY  KD.DOCUMENT_ID  DESC
+  </select>
+  <!--根据用户id 或者部门id查询 可以阅读的文档  -->
+  <select id="selectKwByUserOrDept" parameterType="java.util.Map" resultMap="newResultMap">
+		SELECT
+			KD.*,
+			KM.*
+		FROM
+			(
+			SELECT
+				KD.DOCUMENT_ID,
+				KD.DOCUMENT_ORIGIN,
+				KD.DOCUMENT_AUTHOR,
+				KD.DOCUMENT_UPLOAD_DATE,
+				KD.DOCUMENT_ABSTRACT,
+				KD.DOCUMENT_KEYWORD,
+				KD.DOCUMENT_TYPE,
+				KD.DOCUMENT_SIZE,
+				KD.DOCUMENT_MARKS,
+				KD.DOCUMENT_CATEGORY,
+				KD.DOCUMENT_LABLE,
+				KD.DOCUMENT_STATE,
+				KL.FILED_ID AS FILEDID,
+				KL.FILENAME AS DOCUMENTNAME,
+				KL.SAVEURL AS DOCUMENTSAVEURL 
+			FROM
+				KW_DOCUMENT KD
+				JOIN KW_FILE_LOG KL ON KD.DOCUMENT_ID = KL.DOUCMENT_ID 
+			WHERE
+				DOCUMENT_ID IN (
+				SELECT DISTINCT
+					DOCUMENT_ID 
+				FROM
+					KW_DOCUMENT_RELEASE 
+				WHERE
+					( RELEASE_TO_USERID = #{params.userId} AND RELEASE_TO_DETPID IS NULL ) 
+				OR
+                    ( RELEASE_TO_DETPID = #{params.detpId}  AND RELEASE_TO_USERID IS NULL )
+				ORDER BY
+				DOCUMENT_ID 
+			)  
+			AND   KD.DOCUMENT_STATE = 1
+			 <!-- 来源 -->
+			 <if test="params.origin != null">
+		     		AND   KD.DOCUMENT_ORIGIN  LIKE CONCAT('%', #{params.origin,jdbcType=VARCHAR},'%')
+		    	 </if>		
+		    	 <!-- 作者 -->	
+			 <if test="params.author != null">
+		     		AND   KD.DOCUMENT_AUTHOR  LIKE CONCAT('%', #{params.author,jdbcType=VARCHAR},'%')
+		    	 </if>	
+		    	 <!-- 摘要 -->	
+			 <if test="params.abstract != null">
+		     		AND   KD.DOCUMENT_ABSTRACT  LIKE CONCAT('%',#{params.abstract,jdbcType=VARCHAR},'%')
+		    	 </if>	
+		    	 <!-- 备注 -->	
+			 <if test="params.marks != null">
+		     		AND   KD.DOCUMENT_MARKS  LIKE CONCAT('%',#{params.marks,jdbcType=VARCHAR},'%')
+		    	 </if>	
+		    	 <!-- 关键词 -->	
+			 <if test="params.keyword!= null">
+		     		AND  DOCUMENT_KEYWORD   LIKE CONCAT('%',#{params.keyword,jdbcType=VARCHAR},'%')
+		    	 </if>	
+		    	 <!--标签  -->
+		    	 <if test="params.lableid!= null">
+		    	 AND DOCUMENT_ID IN (
+					SELECT DISTINCT
+						km.DOCUMENT_ID AS DOCUMENT_ID 
+					FROM
+						kw_document_lable kl
+						JOIN kw_document_label_middle km ON kl.LABLE_ID = km.LABLE_ID 
+						JOIN kw_document_release kr  ON  kr.DOCUMENT_ID=km.DOCUMENT_ID
+					WHERE
+						km.LABLE_ID =  #{params.lableid} 
+					)
+		    	 </if>
+   		) KD
+	JOIN KW_DOCUMENT_LABEL_MIDDLE KM ON KM.DOCUMENT_ID = KD.DOCUMENT_ID	 	 
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from kw_document
+    where DOCUMENT_ID = #{documentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.KwDocumentExample">
+    delete from kw_document
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert"  parameterType="owl2vowl.knowledgebase.entity.KwDocument">
+    insert into kw_document (DOCUMENT_ID, DOCUMENT_TITLE, DOCUMENT_ORIGIN, 
+      DOCUMENT_AUTHOR, DOCUMENT_UPLOAD_DATE, DOCUMENT_ABSTRACT, 
+      DOCUMENT_KEYWORD, DOCUMENT_TYPE, DOCUMENT_SIZE, 
+      DOCUMENT_MARKS, DOCUMENT_NAME, DOCUMENT_SAVEURL, 
+      DOCUMENT_CATEGORY, DOCUMENT_LABLE, DOCUMENT_STATE, 
+      USER_NAME, DEPARTMENT_NAME)
+    values (#{documentId,jdbcType=INTEGER}, #{documentTitle,jdbcType=VARCHAR}, #{documentOrigin,jdbcType=VARCHAR}, 
+      #{documentAuthor,jdbcType=VARCHAR}, #{documentUploadDate,jdbcType=DATE}, #{documentAbstract,jdbcType=VARCHAR}, 
+      #{documentKeyword,jdbcType=VARCHAR}, #{documentType,jdbcType=VARCHAR}, #{documentSize,jdbcType=INTEGER}, 
+      #{documentMarks,jdbcType=VARCHAR}, #{documentName,jdbcType=VARCHAR}, #{documentSaveurl,jdbcType=VARCHAR}, 
+      #{documentCategory,jdbcType=INTEGER}, #{documentLable,jdbcType=INTEGER}, #{documentState,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="documentId" parameterType="owl2vowl.knowledgebase.entity.KwDocument">
+    insert into kw_document
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="documentId != null">
+        DOCUMENT_ID,
+      </if>
+      <if test="documentTitle != null">
+        DOCUMENT_TITLE,
+      </if>
+      <if test="documentOrigin != null">
+        DOCUMENT_ORIGIN,
+      </if>
+      <if test="documentAuthor != null">
+        DOCUMENT_AUTHOR,
+      </if>
+      <if test="documentUploadDate != null">
+        DOCUMENT_UPLOAD_DATE,
+      </if>
+      <if test="documentAbstract != null">
+        DOCUMENT_ABSTRACT,
+      </if>
+      <if test="documentKeyword != null">
+        DOCUMENT_KEYWORD,
+      </if>
+      <if test="documentType != null">
+        DOCUMENT_TYPE,
+      </if>
+      <if test="documentSize != null">
+        DOCUMENT_SIZE,
+      </if>
+      <if test="documentMarks != null">
+        DOCUMENT_MARKS,
+      </if>
+      <if test="documentName != null">
+        DOCUMENT_NAME,
+      </if>
+      <if test="documentSaveurl != null">
+        DOCUMENT_SAVEURL,
+      </if>
+      <if test="documentCategory != null">
+        DOCUMENT_CATEGORY,
+      </if>
+      <if test="documentLable != null">
+        DOCUMENT_LABLE,
+      </if>
+      <if test="documentState != null">
+        DOCUMENT_STATE,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="documentId != null">
+        #{documentId,jdbcType=INTEGER},
+      </if>
+      <if test="documentTitle != null">
+        #{documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="documentOrigin != null">
+        #{documentOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="documentAuthor != null">
+        #{documentAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="documentUploadDate != null">
+        #{documentUploadDate,jdbcType=DATE},
+      </if>
+      <if test="documentAbstract != null">
+        #{documentAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="documentKeyword != null">
+        #{documentKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="documentType != null">
+        #{documentType,jdbcType=VARCHAR},
+      </if>
+      <if test="documentSize != null">
+        #{documentSize,jdbcType=INTEGER},
+      </if>
+      <if test="documentMarks != null">
+        #{documentMarks,jdbcType=VARCHAR},
+      </if>
+      <if test="documentName != null">
+        #{documentName,jdbcType=VARCHAR},
+      </if>
+      <if test="documentSaveurl != null">
+        #{documentSaveurl,jdbcType=VARCHAR},
+      </if>
+      <if test="documentCategory != null">
+        #{documentCategory,jdbcType=INTEGER},
+      </if>
+      <if test="documentLable != null">
+        #{documentLable,jdbcType=INTEGER},
+      </if>
+      <if test="documentState != null">
+        #{documentState,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.KwDocumentExample" resultType="java.lang.Long">
+    select count(*) from kw_document
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update kw_document
+    <set>
+      <if test="record.documentId != null">
+        DOCUMENT_ID = #{record.documentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.documentTitle != null">
+        DOCUMENT_TITLE = #{record.documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentOrigin != null">
+        DOCUMENT_ORIGIN = #{record.documentOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentAuthor != null">
+        DOCUMENT_AUTHOR = #{record.documentAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentUploadDate != null">
+        DOCUMENT_UPLOAD_DATE = #{record.documentUploadDate,jdbcType=DATE},
+      </if>
+      <if test="record.documentAbstract != null">
+        DOCUMENT_ABSTRACT = #{record.documentAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentKeyword != null">
+        DOCUMENT_KEYWORD = #{record.documentKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentType != null">
+        DOCUMENT_TYPE = #{record.documentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentSize != null">
+        DOCUMENT_SIZE = #{record.documentSize,jdbcType=INTEGER},
+      </if>
+      <if test="record.documentMarks != null">
+        DOCUMENT_MARKS = #{record.documentMarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentName != null">
+        DOCUMENT_NAME = #{record.documentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentSaveurl != null">
+        DOCUMENT_SAVEURL = #{record.documentSaveurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentCategory != null">
+        DOCUMENT_CATEGORY = #{record.documentCategory,jdbcType=INTEGER},
+      </if>
+      <if test="record.documentLable != null">
+        DOCUMENT_LABLE = #{record.documentLable,jdbcType=INTEGER},
+      </if>
+      <if test="record.documentState != null">
+        DOCUMENT_STATE = #{record.documentState,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentName != null">
+        DEPARTMENT_NAME = #{record.departmentName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update kw_document
+    set DOCUMENT_ID = #{record.documentId,jdbcType=INTEGER},
+      DOCUMENT_TITLE = #{record.documentTitle,jdbcType=VARCHAR},
+      DOCUMENT_ORIGIN = #{record.documentOrigin,jdbcType=VARCHAR},
+      DOCUMENT_AUTHOR = #{record.documentAuthor,jdbcType=VARCHAR},
+      DOCUMENT_UPLOAD_DATE = #{record.documentUploadDate,jdbcType=DATE},
+      DOCUMENT_ABSTRACT = #{record.documentAbstract,jdbcType=VARCHAR},
+      DOCUMENT_KEYWORD = #{record.documentKeyword,jdbcType=VARCHAR},
+      DOCUMENT_TYPE = #{record.documentType,jdbcType=VARCHAR},
+      DOCUMENT_SIZE = #{record.documentSize,jdbcType=INTEGER},
+      DOCUMENT_MARKS = #{record.documentMarks,jdbcType=VARCHAR},
+      DOCUMENT_NAME = #{record.documentName,jdbcType=VARCHAR},
+      DOCUMENT_SAVEURL = #{record.documentSaveurl,jdbcType=VARCHAR},
+      DOCUMENT_CATEGORY = #{record.documentCategory,jdbcType=INTEGER},
+      DOCUMENT_LABLE = #{record.documentLable,jdbcType=INTEGER},
+      DOCUMENT_STATE = #{record.documentState,jdbcType=INTEGER},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      DEPARTMENT_NAME = #{record.departmentName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="owl2vowl.knowledgebase.entity.KwDocument">
+    update kw_document
+    <set>
+      <if test="documentTitle != null">
+        DOCUMENT_TITLE = #{documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="documentOrigin != null">
+        DOCUMENT_ORIGIN = #{documentOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="documentAuthor != null">
+        DOCUMENT_AUTHOR = #{documentAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="documentUploadDate != null">
+        DOCUMENT_UPLOAD_DATE = #{documentUploadDate,jdbcType=DATE},
+      </if>
+      <if test="documentAbstract != null">
+        DOCUMENT_ABSTRACT = #{documentAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="documentKeyword != null">
+        DOCUMENT_KEYWORD = #{documentKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="documentType != null">
+        DOCUMENT_TYPE = #{documentType,jdbcType=VARCHAR},
+      </if>
+      <if test="documentSize != null">
+        DOCUMENT_SIZE = #{documentSize,jdbcType=INTEGER},
+      </if>
+      <if test="documentMarks != null">
+        DOCUMENT_MARKS = #{documentMarks,jdbcType=VARCHAR},
+      </if>
+      <if test="documentName != null">
+        DOCUMENT_NAME = #{documentName,jdbcType=VARCHAR},
+      </if>
+      <if test="documentSaveurl != null">
+        DOCUMENT_SAVEURL = #{documentSaveurl,jdbcType=VARCHAR},
+      </if>
+      <if test="documentCategory != null">
+        DOCUMENT_CATEGORY = #{documentCategory,jdbcType=INTEGER},
+      </if>
+      <if test="documentLable != null">
+        DOCUMENT_LABLE = #{documentLable,jdbcType=INTEGER},
+      </if>
+      <if test="documentState != null">
+        DOCUMENT_STATE = #{documentState,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DOCUMENT_ID = #{documentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="owl2vowl.knowledgebase.entity.KwDocument">
+    update kw_document
+    set DOCUMENT_TITLE = #{documentTitle,jdbcType=VARCHAR},
+      DOCUMENT_ORIGIN = #{documentOrigin,jdbcType=VARCHAR},
+      DOCUMENT_AUTHOR = #{documentAuthor,jdbcType=VARCHAR},
+      DOCUMENT_UPLOAD_DATE = #{documentUploadDate,jdbcType=DATE},
+      DOCUMENT_ABSTRACT = #{documentAbstract,jdbcType=VARCHAR},
+      DOCUMENT_KEYWORD = #{documentKeyword,jdbcType=VARCHAR},
+      DOCUMENT_TYPE = #{documentType,jdbcType=VARCHAR},
+      DOCUMENT_SIZE = #{documentSize,jdbcType=INTEGER},
+      DOCUMENT_MARKS = #{documentMarks,jdbcType=VARCHAR},
+      DOCUMENT_NAME = #{documentName,jdbcType=VARCHAR},
+      DOCUMENT_SAVEURL = #{documentSaveurl,jdbcType=VARCHAR},
+      DOCUMENT_CATEGORY = #{documentCategory,jdbcType=INTEGER},
+      DOCUMENT_LABLE = #{documentLable,jdbcType=INTEGER},
+      DOCUMENT_STATE = #{documentState,jdbcType=INTEGER},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      DEPARTMENT_NAME = #{departmentName,jdbcType=VARCHAR}
+    where DOCUMENT_ID = #{documentId,jdbcType=INTEGER}
+  </update>
+  <!--欢迎页面头部数据获取-->
+  <select id="selectHeadDate" parameterType="owl2vowl.knowledgebase.entity.KwDocument" resultMap="readResultMap">
+    select
+    (select count(*) from kw_document where 1=1 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read01,
+    (select count(*) from kw_document where document_state=0 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read02,
+    (select count(*) from kw_document where document_state=1 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read03,
+    (select count(*) FROM kw_document where document_state=2 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read04,
+    (select count(distinct type)  from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read05,
+	(select read02 read12 from
+	(select count(type) read01,type read02
+	from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID  where 1=1 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR} group by read02 order by read01 desc limit 1) a) read06,
+    (select count(type) read01
+	from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR} group by type order by read01 desc limit 1) read07,
+	(select read02 read14 from
+	(select count(type) read01,type read02 from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR} group by read02 order by read01 desc limit 2) a
+	order by read01 limit 1) read08,
+	(select read01 read13 from
+	(select count(type) read01,type read02 from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}group by read02 order by read01 desc limit 2) a
+	order by read01 limit 1) read09,
+    (select count(*) from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read10,
+    (select count(*) from kw_file_log a
+    left join
+    kw_document b
+    on a.doucment_id = b.document_id
+    where 1=1 and  document_state = 0 and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read11,
+    ((select count(*) from kw_file_log a
+    left join
+    kw_document b
+    on a.doucment_id = b.document_id
+    where 1=1  and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME='公司领导'  and document_state = 0)/(select count(*) from kw_file_log )) read12
+  </select>
+  <!--欢迎页面饼图1数据获取-->
+  <select id="selectRecommend1" parameterType="owl2vowl.knowledgebase.entity.KwDocument" resultMap="readResultMap">
+    select
+    (SELECT count(*) FROM kw_document where DOCUMENT_STATE=0 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read01,
+    (SELECT count(*) FROM kw_document where DOCUMENT_STATE=1 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read02,
+    (SELECT count(*) FROM kw_document where DOCUMENT_STATE=2 and USER_NAME=#{userName,jdbcType=VARCHAR} and DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read03
+  </select>
+  <!--欢迎页面饼图2数据获取-->
+  <select id="selectRecommend2" parameterType="owl2vowl.knowledgebase.entity.KwDocument" resultMap="readResultMap">
+    select
+    (select count(*) from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1  and  a.type in ('doc','docx') and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read01,
+    (select count(*) from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1  and  a.type in ('xls','xlsx') and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read02,
+    (select count(*) from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1  and  a.type in ('ppt','pptx') and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read03,
+    (select count(*) from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1  and  a.type in ('pdf') and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read04,
+    (select count(*) from kw_file_log a left join kw_document b on a.DOUCMENT_ID = b.DOCUMENT_ID where 1=1  and  a.type not in ('doc','docx','xls','xlsx','ppt','pptx','pdf') and b.USER_NAME=#{userName,jdbcType=VARCHAR} and b.DEPARTMENT_NAME=#{departmentName,jdbcType=VARCHAR}) read05
+  </select>
+</mapper>

@@ -1,0 +1,699 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : 122
+Source Server Version : 50621
+Source Host           : 39.106.128.34:3306
+Source Database       : repository
+
+Target Server Type    : MYSQL
+Target Server Version : 50621
+File Encoding         : 65001
+
+Date: 2018-07-12 16:56:38
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for entity_info
+-- ----------------------------
+DROP TABLE IF EXISTS `entity_info`;
+CREATE TABLE `entity_info` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `ENTITY_CODE` varchar(50) DEFAULT NULL COMMENT '实体编号',
+  `ENTITY_NAME` varchar(200) DEFAULT NULL COMMENT '实体名称',
+  `ENTITY_TYPE` varchar(200) DEFAULT NULL COMMENT '实体类型',
+  `ENTITY_PRO` varchar(200) DEFAULT NULL COMMENT '实体属性',
+  `CREATEDATE` varchar(50) DEFAULT NULL COMMENT '创建时间',
+  `OWL_CODE` varchar(50) DEFAULT NULL COMMENT 'OWL编号',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='实体信息表';
+
+-- ----------------------------
+-- Records of entity_info
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for entity_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `entity_relation`;
+CREATE TABLE `entity_relation` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `ENTITY_1_CODE` varchar(50) DEFAULT NULL COMMENT '实体1code',
+  `ENTITY_2_CODE` varchar(50) DEFAULT NULL COMMENT '实体2code',
+  `ENTITY_1_NAME` varchar(200) DEFAULT NULL COMMENT '实体1名称',
+  `ENTITY_2_NAME` varchar(200) DEFAULT NULL COMMENT '实体2名称',
+  `RELATION` varchar(200) DEFAULT NULL COMMENT '实体1与实体2关系',
+  `SYNC_FLAG` varchar(1) DEFAULT NULL COMMENT '同步状态',
+  `SECRETFLAG` int(11) DEFAULT NULL COMMENT '密级',
+  `OWL_CODE` varchar(50) DEFAULT NULL COMMENT 'OWL编号',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='实体间关系表';
+
+-- ----------------------------
+-- Records of entity_relation
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jena_g1t0_reif
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_g1t0_reif`;
+CREATE TABLE `jena_g1t0_reif` (
+  `Subj` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `Prop` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `Obj` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `GraphID` int(11) DEFAULT NULL,
+  `Stmt` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `HasType` char(1) NOT NULL,
+  UNIQUE KEY `jena_g1t0_reifXSTMT` (`Stmt`,`HasType`),
+  KEY `jena_g1t0_reifXSP` (`Subj`,`Prop`),
+  KEY `jena_g1t0_reifXO` (`Obj`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_g1t0_reif
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jena_g1t1_stmt
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_g1t1_stmt`;
+CREATE TABLE `jena_g1t1_stmt` (
+  `Subj` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Prop` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Obj` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `GraphID` int(11) DEFAULT NULL,
+  KEY `jena_g1t1_stmtXSP` (`Subj`,`Prop`),
+  KEY `jena_g1t1_stmtXO` (`Obj`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_g1t1_stmt
+-- ----------------------------
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Ontology:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::ontologyIRI:', 'Lv:0::http://www.semanticweb.org/liujg/ontologies/2018/3/untitled-ontology-4:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff1:', 'Uv::name:', 'Lv:0:::', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff1:', 'Uv::IRI:', 'Lv:0::http://www.w3.org/2002/07/owl#:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Prefix:', 'Bv::16fd3210:164649014da:-7ff1:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff0:', 'Uv::name:', 'Lv:0::owl:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff0:', 'Uv::IRI:', 'Lv:0::http://www.w3.org/2002/07/owl#:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Prefix:', 'Bv::16fd3210:164649014da:-7ff0:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fef:', 'Uv::name:', 'Lv:0::rdf:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fef:', 'Uv::IRI:', 'Lv:0::http://www.w3.org/1999/02/22-rdf-syntax-ns#:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Prefix:', 'Bv::16fd3210:164649014da:-7fef:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fee:', 'Uv::name:', 'Lv:0::xsd:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fee:', 'Uv::IRI:', 'Lv:0::http://www.w3.org/2001/XMLSchema#:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Prefix:', 'Bv::16fd3210:164649014da:-7fee:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fed:', 'Uv::name:', 'Lv:0::rdfs:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fed:', 'Uv::IRI:', 'Lv:0::http://www.w3.org/2000/01/rdf-schema#:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Prefix:', 'Bv::16fd3210:164649014da:-7fed:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fec:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fec:', 'Uv::IRI:', 'Lv:0::#Animal:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fec:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7feb:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7feb:', 'Uv::IRI:', 'Lv:0::#Branch:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7feb:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fea:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fea:', 'Uv::IRI:', 'Lv:0::#Carnivore:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fea:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe9:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe9:', 'Uv::IRI:', 'Lv:0::#Giaffe:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe9:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe8:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe8:', 'Uv::IRI:', 'Lv:0::#Herbicore:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe8:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe7:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe7:', 'Uv::IRI:', 'Lv:0::#Leaf:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe7:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe6:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe6:', 'Uv::IRI:', 'Lv:0::#Lion:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe6:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe5:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe5:', 'Uv::IRI:', 'Lv:0::#Plant:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe5:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe4:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe4:', 'Uv::IRI:', 'Lv:0::#Tree:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe4:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe3:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe3:', 'Uv::IRI:', 'Lv:0::#eat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe3:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe2:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe2:', 'Uv::IRI:', 'Lv:0::#eated:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe2:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe1:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe1:', 'Uv::IRI:', 'Lv:0::#is_part_of:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe1:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe0:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fe0:', 'Uv::IRI:', 'Lv:0::#maineat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#Declaration:', 'Bv::16fd3210:164649014da:-7fe0:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fdf:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fdf:', 'Uv::IRI:', 'Lv:0::#Branch:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fdf:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fde:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fde:', 'Uv::IRI:', 'Lv:0::#Branch:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fde:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fdd:', 'Uv::IRI:', 'Lv:0::#is_part_of:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fdc:', 'Uv::IRI:', 'Lv:0::#Tree:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fdb:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fdb:', 'Uv::IRI:', 'Lv:0::#Carnivore:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fdb:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fda:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fda:', 'Uv::IRI:', 'Lv:0::#Carnivore:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fda:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd9:', 'Uv::IRI:', 'Lv:0::#maineat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd8:', 'Uv::IRI:', 'Lv:0::#Animal:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd7:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd7:', 'Uv::IRI:', 'Lv:0::#Giaffe:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fd7:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd6:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd6:', 'Uv::IRI:', 'Lv:0::#Giaffe:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fd6:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd5:', 'Uv::IRI:', 'Lv:0::#eat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd4:', 'Uv::IRI:', 'Lv:0::#Leaf:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd3:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd3:', 'Uv::IRI:', 'Lv:0::#Herbicore:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fd3:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd2:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd2:', 'Uv::IRI:', 'Lv:0::#Leaf:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fd2:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd1:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd1:', 'Uv::IRI:', 'Lv:0::#Leaf:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fd1:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fd0:', 'Uv::IRI:', 'Lv:0::#is_part_of:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fcf:', 'Uv::IRI:', 'Lv:0::#Branch:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fce:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fce:', 'Uv::IRI:', 'Lv:0::#Lion:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fce:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fcd:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fcd:', 'Uv::IRI:', 'Lv:0::#Lion:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fcd:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fcc:', 'Uv::IRI:', 'Lv:0::#eat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fcb:', 'Uv::IRI:', 'Lv:0::#Herbicore:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fca:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fca:', 'Uv::IRI:', 'Lv:0::#Tree:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubClassOf:', 'Bv::16fd3210:164649014da:-7fca:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc9:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#Class:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc9:', 'Uv::IRI:', 'Lv:0::#Animal:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#DisjointClasses:', 'Bv::16fd3210:164649014da:-7fc9:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc8:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc8:', 'Uv::IRI:', 'Lv:0::#maineat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#SubObjectPropertyOf:', 'Bv::16fd3210:164649014da:-7fc8:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc7:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc7:', 'Uv::IRI:', 'Lv:0::#eated:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#InverseObjectProperties:', 'Bv::16fd3210:164649014da:-7fc7:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc6:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc6:', 'Uv::IRI:', 'Lv:0::#is_part_of:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#TransitiveObjectProperty:', 'Bv::16fd3210:164649014da:-7fc6:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc5:', 'Uv::http://www.w3.org/1999/02/22-rdf-syntax-ns#type:', 'Uv::http://www.w3.org/2002/07/owl#ObjectProperty:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc5:', 'Uv::IRI:', 'Lv:0::#eat:', '1');
+INSERT INTO `jena_g1t1_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff2:', 'Uv::http://www.w3.org/2002/07/owl#ObjectPropertyDomain:', 'Bv::16fd3210:164649014da:-7fc5:', '1');
+
+-- ----------------------------
+-- Table structure for jena_graph
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_graph`;
+CREATE TABLE `jena_graph` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` tinyblob,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_graph
+-- ----------------------------
+INSERT INTO `jena_graph` VALUES ('1', 0x416E696D616C54657374);
+
+-- ----------------------------
+-- Table structure for jena_long_lit
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_long_lit`;
+CREATE TABLE `jena_long_lit` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Head` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ChkSum` bigint(20) DEFAULT NULL,
+  `Tail` mediumblob,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `jena_XLIT` (`Head`,`ChkSum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_long_lit
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jena_long_uri
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_long_uri`;
+CREATE TABLE `jena_long_uri` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Head` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ChkSum` bigint(20) DEFAULT NULL,
+  `Tail` mediumblob,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `jena_XURI` (`Head`,`ChkSum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_long_uri
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jena_prefix
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_prefix`;
+CREATE TABLE `jena_prefix` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Head` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ChkSum` bigint(20) DEFAULT NULL,
+  `Tail` mediumblob,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `jena_XBND` (`Head`,`ChkSum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_prefix
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jena_sys_stmt
+-- ----------------------------
+DROP TABLE IF EXISTS `jena_sys_stmt`;
+CREATE TABLE `jena_sys_stmt` (
+  `Subj` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Prop` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Obj` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `GraphID` int(11) DEFAULT NULL,
+  KEY `jena_XSP` (`Subj`,`Prop`),
+  KEY `jena_XO` (`Obj`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jena_sys_stmt
+-- ----------------------------
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#EngineType:', 'Lv:0::MySQL:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#DriverVersion:', 'Lv:0::2.0alpha:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LayoutVersion:', 'Lv:0::2.0:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#FormatDate:', 'Lv:0::20180704T091201Z:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LongObjectLength:', 'Lv:0::100:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#IndexKeyLength:', 'Lv:0::100:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#IsTransactionDb:', 'Lv:0::true:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#DoCompressURI:', 'Lv:0::false:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#CompressURILength:', 'Lv:0::100:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#TableNamePrefix:', 'Lv:0::jena_:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7fff:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphName:', 'Lv:0::JENA_DEFAULT_GRAPH_PROPERTIES:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7fff:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphType:', 'Lv:0::generic:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7fff:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphId:', 'Lv:0::0:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphName:', 'Lv:0::AnimalTest:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphType:', 'Lv:0::generic:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphId:', 'Lv:0::1:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#StmtTable:', 'Lv:0::jena_g1t1_stmt:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#ReifTable:', 'Lv:0::jena_g1t0_reif:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__8000:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#Graph:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffd:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PSetName:', 'Lv:0::192_168_1_516fd3210_164649014da__7ffc:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffd:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PSetType:', 'Lv:0::com.hp.hpl.jena.db.impl.PSet_ReifStore_RDB:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffd:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PSetTable:', 'Lv:0::jena_g1t0_reif:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffb:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LSetName:', 'Lv:0::LSET_AnimalTest_REIFIER:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffb:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LSetType:', 'Lv:0::com.hp.hpl.jena.db.impl.SpecializedGraphReifier_RDB:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffb:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LSetPSet:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffd:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphLSet:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffb:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffa:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PSetName:', 'Lv:0::192_168_1_516fd3210_164649014da__7ff9:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffa:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PSetType:', 'Lv:0::com.hp.hpl.jena.db.impl.PSet_TripleStore_RDB:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffa:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PSetTable:', 'Lv:0::jena_g1t1_stmt:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ff8:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LSetName:', 'Lv:0::LSET_AnimalTest:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ff8:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LSetType:', 'Lv:0::com.hp.hpl.jena.db.impl.SpecializedGraph_TripleStore_RDB:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ff8:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#LSetPSet:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffa:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphLSet:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ff8:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphPrefix:', 'Bv::16fd3210:164649014da:-7ff6:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff6:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixURI:', 'Lv:0::http://www.w3.org/2002/07/owl#:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff6:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixValue:', 'Lv:0:::', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphPrefix:', 'Bv::16fd3210:164649014da:-7ff5:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff5:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixURI:', 'Lv:0::http://www.w3.org/2000/01/rdf-schema#:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff5:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixValue:', 'Lv:0::rdfs:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphPrefix:', 'Bv::16fd3210:164649014da:-7ff4:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff4:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixURI:', 'Lv:0::http://www.w3.org/2001/XMLSchema#:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff4:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixValue:', 'Lv:0::xsd:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphPrefix:', 'Bv::16fd3210:164649014da:-7ff3:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff3:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixURI:', 'Lv:0::http://www.w3.org/1999/02/22-rdf-syntax-ns#:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7ff3:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixValue:', 'Lv:0::rdf:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Uv::http://jena.hpl.hp.com/2003/04/DB#192_168_1_516fd3210_164649014da__7ffe:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#GraphPrefix:', 'Bv::16fd3210:164649014da:-7fc1:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc1:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixURI:', 'Lv:0::http://www.w3.org/2002/07/owl#:', '0');
+INSERT INTO `jena_sys_stmt` VALUES ('Bv::16fd3210:164649014da:-7fc1:', 'Uv::http://jena.hpl.hp.com/2003/04/DB#PrefixValue:', 'Lv:0::owl:', '0');
+
+-- ----------------------------
+-- Table structure for kpinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `kpinfo`;
+CREATE TABLE `kpinfo` (
+  `KP_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '知识点ID',
+  `KP_NAME` varchar(50) DEFAULT NULL COMMENT '知识点名称',
+  `RELEASE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '发布时间',
+  PRIMARY KEY (`KP_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识点信息表';
+
+-- ----------------------------
+-- Records of kpinfo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for kp_kc_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `kp_kc_relation`;
+CREATE TABLE `kp_kc_relation` (
+  `KP_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '知识点ID',
+  `KEYWORD_ID` int(11) DEFAULT NULL COMMENT '关键词ID',
+  PRIMARY KEY (`KP_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识点关键词关系信息表';
+
+-- ----------------------------
+-- Records of kp_kc_relation
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for kw_category
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_category`;
+CREATE TABLE `kw_category` (
+  `CATEGORY_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '分类编号（主键）',
+  `CATEGORY_NAME` varchar(20) DEFAULT NULL COMMENT '分类名称',
+  `CATEGORY_DESC` varchar(20) DEFAULT NULL COMMENT '分类描述',
+  `CATEGORY_LFT` int(25) DEFAULT NULL COMMENT '分类树形结构分区左值',
+  `CATEGORY_RGT` int(25) DEFAULT NULL COMMENT '分类树形结构分区右值',
+  `CATEGORY_DATE` date DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`CATEGORY_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文档目录分类基本情况表';
+
+-- ----------------------------
+-- Records of kw_category
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for kw_check
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_check`;
+CREATE TABLE `kw_check` (
+  `CHECK_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '审核ID (主键)',
+  `DOCUMENT_ID` int(11) DEFAULT NULL COMMENT '文档编号（主键）',
+  `CHECK_USERID` int(11) DEFAULT NULL COMMENT '用户ID(审核人)',
+  `CHECK_USERNAME` varchar(200) DEFAULT NULL COMMENT '用户名称',
+  `CHECK_STATUS` int(11) DEFAULT NULL COMMENT '审核状态',
+  `date` datetime DEFAULT NULL COMMENT '审核日期',
+  PRIMARY KEY (`CHECK_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='文档审核表';
+
+-- ----------------------------
+-- Records of kw_check
+-- ----------------------------
+INSERT INTO `kw_check` VALUES ('1', '17', '1', 'wy', '1', '2018-07-12 11:06:36');
+INSERT INTO `kw_check` VALUES ('2', '21', '1', 'wy', '1', '2018-07-12 16:47:07');
+
+-- ----------------------------
+-- Table structure for kw_department
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_department`;
+CREATE TABLE `kw_department` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DEPARTMENT_NAME` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of kw_department
+-- ----------------------------
+INSERT INTO `kw_department` VALUES ('1', '开发部');
+INSERT INTO `kw_department` VALUES ('2', '测试部');
+INSERT INTO `kw_department` VALUES ('3', '人事部');
+INSERT INTO `kw_department` VALUES ('4', '财务部');
+INSERT INTO `kw_department` VALUES ('5', '资产部');
+INSERT INTO `kw_department` VALUES ('6', '相关部门');
+
+-- ----------------------------
+-- Table structure for kw_document
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_document`;
+CREATE TABLE `kw_document` (
+  `DOCUMENT_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '文档编号（主键）',
+  `DOCUMENT_ORIGIN` varchar(20) DEFAULT NULL COMMENT '来源',
+  `DOCUMENT_AUTHOR` varchar(15) DEFAULT NULL COMMENT '作者',
+  `DOCUMENT_UPLOAD_DATE` date DEFAULT NULL COMMENT '文档上传时间',
+  `DOCUMENT_ABSTRACT` varchar(80) DEFAULT NULL COMMENT '摘要',
+  `DOCUMENT_KEYWORD` varchar(255) DEFAULT NULL COMMENT '关键词',
+  `DOCUMENT_TYPE` varchar(6) DEFAULT NULL COMMENT '文档类型',
+  `DOCUMENT_SIZE` int(11) DEFAULT NULL COMMENT '文档大小',
+  `DOCUMENT_MARKS` varchar(255) DEFAULT NULL COMMENT '文档备注',
+  `DOCUMENT_NAME` varchar(255) DEFAULT NULL COMMENT '文档名称',
+  `DOCUMENT_SAVEURL` varchar(255) DEFAULT NULL COMMENT '上传文件保存路径',
+  `DOCUMENT_CATEGORY` int(11) DEFAULT NULL COMMENT '目录分类(id)',
+  `DOCUMENT_LABLE` int(11) DEFAULT NULL COMMENT '标签（id）',
+  `DOCUMENT_STATE` int(15) DEFAULT '0' COMMENT '文档审批状态',
+  PRIMARY KEY (`DOCUMENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='文档基本情况表';
+
+-- ----------------------------
+-- Records of kw_document
+-- ----------------------------
+INSERT INTO `kw_document` VALUES ('20', 'qqqqqqqq', 'fffffffff', null, 'fffffff', 'dfsfsdf', 'pdf', '8812', 'sdffffffff', '斯欧开放互联平台（S-OSB）产品介绍V1.0.pdf', 'C:\\uploadDir\\20180712\\斯欧开放互联平台（S-OSB）产品介绍V1.0.pdf', null, null, '0');
+INSERT INTO `kw_document` VALUES ('21', '111111', 'wy', null, 'fffffff', 'dfsfsdf', 'pdf', '10390', 'sdffffffff', '【管理】有效管理的5大兵法.pdf', 'C:\\uploadDir\\20180712\\【管理】有效管理的5大兵法.pdf', null, null, '1');
+
+-- ----------------------------
+-- Table structure for kw_document_lable
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_document_lable`;
+CREATE TABLE `kw_document_lable` (
+  `LABLE_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '标签编号（主键）',
+  `LABLE_NAME` varchar(20) DEFAULT NULL COMMENT '分类名称（标签名称）',
+  `LABLE_PREID` int(11) DEFAULT NULL COMMENT '上级标签编号',
+  `LABLE_DESC` varchar(20) DEFAULT NULL COMMENT '分类描述',
+  `LABLE_DATE` date DEFAULT NULL COMMENT '创建时间',
+  `LABLE_SORT` int(11) DEFAULT NULL COMMENT '排序字段',
+  PRIMARY KEY (`LABLE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文档标签分类基本情况表';
+
+-- ----------------------------
+-- Records of kw_document_lable
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for kw_document_pageview
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_document_pageview`;
+CREATE TABLE `kw_document_pageview` (
+  `PAGEVIEW_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '浏览ID (主键)',
+  `DOCUMENT_ID` int(11) DEFAULT NULL COMMENT '文档编号',
+  `DOCUMENT_NAME` varchar(200) DEFAULT NULL COMMENT '文档名称',
+  `PAGEVIEW_TIME` date DEFAULT NULL COMMENT '浏览时间',
+  `PAGEVIEW_IP` varchar(200) DEFAULT NULL COMMENT '浏览者IP',
+  PRIMARY KEY (`PAGEVIEW_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='文档浏览';
+
+-- ----------------------------
+-- Records of kw_document_pageview
+-- ----------------------------
+INSERT INTO `kw_document_pageview` VALUES ('1', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('2', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('3', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('4', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('5', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('6', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('7', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('8', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('9', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('10', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('11', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('12', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('13', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+INSERT INTO `kw_document_pageview` VALUES ('14', '1001', '常用有色金属的力学性能（光合作用、电力学知识库、服务第三方作为）', '2018-07-10', '1');
+
+-- ----------------------------
+-- Table structure for kw_document_release
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_document_release`;
+CREATE TABLE `kw_document_release` (
+  `RELEASE_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '发布ID (主键)',
+  `DOCUMENT_ID` int(11) DEFAULT NULL COMMENT '文档编号',
+  `RELEASE_FROM_USERID` int(11) DEFAULT NULL COMMENT '发布者ID',
+  `RELEASE_FROM_USERNAME` varchar(200) DEFAULT NULL COMMENT '发布者名称',
+  `RELEASE_TO_DETPID` int(11) DEFAULT NULL COMMENT '接收部门编号',
+  `RELEASE_DETPNAME` varchar(200) DEFAULT NULL COMMENT '部门名称',
+  `RELEASE_TO_USERID` int(11) DEFAULT NULL COMMENT '接收者ID',
+  `RELEASE_TO_USERNAME` varchar(200) DEFAULT NULL COMMENT '接收者名称',
+  `RELEASE_DATE` date DEFAULT NULL COMMENT '发布日期',
+  PRIMARY KEY (`RELEASE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文档发布';
+
+-- ----------------------------
+-- Records of kw_document_release
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for kw_download_log
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_download_log`;
+CREATE TABLE `kw_download_log` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `DOWN_TIME` date DEFAULT NULL COMMENT '下载时间',
+  `FILE_TYPE` varchar(10) DEFAULT NULL COMMENT '下载文件类型',
+  `SIZE` int(11) DEFAULT NULL COMMENT '下载文件大小',
+  `DOWNLOAD_USERNAME` varchar(50) DEFAULT NULL COMMENT '下载文件用户',
+  `DOWNLOAD_USERID` int(11) DEFAULT NULL COMMENT '下载用户ID',
+  `FILE_ID` int(11) DEFAULT NULL COMMENT '下载文件ID',
+  `FILE_NAME` varchar(50) DEFAULT NULL COMMENT '下载文件名字',
+  `DOCUMENT_TYPE` varchar(50) DEFAULT NULL COMMENT '下载文件所属文档类别',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资料下载日志表';
+
+-- ----------------------------
+-- Records of kw_download_log
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for kw_file_log
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_file_log`;
+CREATE TABLE `kw_file_log` (
+  `FILED_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `UPLOAD_TIME` date DEFAULT NULL COMMENT '上传时间',
+  `TYPE` varchar(10) DEFAULT NULL COMMENT '上传文件类型',
+  `SIZE` double(11,0) DEFAULT NULL COMMENT '上传文件大小',
+  `UPLOAD_USER` varchar(200) DEFAULT NULL COMMENT '上传文件用户',
+  `UPLOAD_USERID` int(11) DEFAULT NULL COMMENT '用户名称',
+  `FILENAME` varchar(50) DEFAULT NULL COMMENT '上传文件名字',
+  `SAVEURL` varchar(100) DEFAULT NULL COMMENT '上传文件保存路径',
+  `DOCUMENT_TYPE` varchar(20) DEFAULT NULL COMMENT '上传文件所属文档类别',
+  `DOUCMENT_ID` int(11) DEFAULT NULL COMMENT '文档编号',
+  PRIMARY KEY (`FILED_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='上传资料日志表';
+
+-- ----------------------------
+-- Records of kw_file_log
+-- ----------------------------
+INSERT INTO `kw_file_log` VALUES ('15', '2018-07-12', 'pdf', '4877', 'wy', '1', '斯欧S-ESB同类产品对比分析v1.1.pdf', 'C:\\uploadDir\\20180712\\斯欧S-ESB同类产品对比分析v1.1.pdf', '科学', '20');
+INSERT INTO `kw_file_log` VALUES ('16', '2018-07-12', 'pdf', '8812', 'wy', '1', '斯欧开放互联平台（S-OSB）产品介绍V1.0.pdf', 'C:\\uploadDir\\20180712\\斯欧开放互联平台（S-OSB）产品介绍V1.0.pdf', '科学', '20');
+INSERT INTO `kw_file_log` VALUES ('17', '2018-07-12', 'pdf', '6038', 'wy', '1', '斯欧应用互联平台（S-ASBV4.0）产品介绍3.pdf', 'C:\\uploadDir\\20180712\\斯欧应用互联平台（S-ASBV4.0）产品介绍3.pdf', '科学', '21');
+INSERT INTO `kw_file_log` VALUES ('18', '2018-07-12', 'pdf', '10390', 'wy', '1', '【管理】有效管理的5大兵法.pdf', 'C:\\uploadDir\\20180712\\【管理】有效管理的5大兵法.pdf', '科学', '21');
+
+-- ----------------------------
+-- Table structure for kw_user
+-- ----------------------------
+DROP TABLE IF EXISTS `kw_user`;
+CREATE TABLE `kw_user` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(100) DEFAULT NULL,
+  `PASSWORD` varchar(100) DEFAULT NULL,
+  `PHONE` int(11) DEFAULT NULL,
+  `DEPARTMENT_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of kw_user
+-- ----------------------------
+INSERT INTO `kw_user` VALUES ('1', 'wy', 'wy', '1888888888', '0');
+INSERT INTO `kw_user` VALUES ('2', 'zhangsan', 'zhangsan', '1233131', '1');
+INSERT INTO `kw_user` VALUES ('3', 'lisi', 'lisi', '1331', '1');
+INSERT INTO `kw_user` VALUES ('4', 'wangwu', 'wangwu', '143434', '1');
+INSERT INTO `kw_user` VALUES ('5', 'zhaoliu', 'zhaoliu', '3434', '2');
+INSERT INTO `kw_user` VALUES ('6', 'qianqi', 'qianqi', '13434', '2');
+
+-- ----------------------------
+-- Table structure for owlfile_info
+-- ----------------------------
+DROP TABLE IF EXISTS `owlfile_info`;
+CREATE TABLE `owlfile_info` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `FILE_NAME` varchar(200) DEFAULT NULL COMMENT '文件名称',
+  `FILE_PATH` varchar(200) DEFAULT NULL COMMENT '文件路径',
+  `FILE_SIZE` int(11) DEFAULT NULL COMMENT '文件大小',
+  `CREATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '文件创建时间',
+  `FILE_OWNER` varchar(200) DEFAULT NULL COMMENT '文件所有者',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='owl文件信息表';
+
+-- ----------------------------
+-- Records of owlfile_info
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for owlindex
+-- ----------------------------
+DROP TABLE IF EXISTS `owlindex`;
+CREATE TABLE `owlindex` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `CREATE_INDEX_DATE` varchar(50) DEFAULT NULL COMMENT '创建时间',
+  `STATUS` varchar(8) DEFAULT NULL COMMENT '状态',
+  `ISALL_FALG` varchar(8) DEFAULT NULL COMMENT '是否全部索引',
+  `BEGIN_TIME` varchar(50) DEFAULT NULL COMMENT '开始时间',
+  `END_TIME` varchar(50) DEFAULT NULL COMMENT '结束时间',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='owl索引表';
+
+-- ----------------------------
+-- Records of owlindex
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for pageinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `pageinfo`;
+CREATE TABLE `pageinfo` (
+  `PAGE_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '页面id',
+  `PAGE_NAME` varchar(50) DEFAULT NULL COMMENT '页面名称',
+  `CREATE_USERID` int(11) DEFAULT NULL COMMENT '用户id',
+  `CREATE_USERNAME` varchar(50) DEFAULT NULL COMMENT '创建用户名称',
+  `DEPTID` varchar(50) DEFAULT NULL COMMENT '对应部门ID',
+  `PAGE_URL` varchar(200) DEFAULT NULL COMMENT '页面地址',
+  `UNIQUE_NAME` varchar(50) DEFAULT NULL COMMENT '页面名称UNIQUE',
+  `PAGE_STYLE` varchar(20) DEFAULT NULL COMMENT '页面样式',
+  `PAGE_CONFIG` longtext COMMENT '页面配置内容',
+  `ATTR1` varchar(10) DEFAULT NULL COMMENT '扩展字段1',
+  `ATTR2` varchar(50) DEFAULT NULL COMMENT '扩展字段2',
+  PRIMARY KEY (`PAGE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='可视化页面信息表';
+
+-- ----------------------------
+-- Records of pageinfo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for portletcomponentinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `portletcomponentinfo`;
+CREATE TABLE `portletcomponentinfo` (
+  `PC_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '配置信息ID',
+  `PORTLET_ID` varchar(50) DEFAULT NULL COMMENT '组件id',
+  `PORTLET_TITLE` varchar(50) DEFAULT NULL COMMENT '组件标题',
+  `PORTLET_CATEID` varchar(100) DEFAULT NULL COMMENT '组件对应栏目ID',
+  `PORTLET_CATENAME` varchar(50) DEFAULT NULL COMMENT '组件对应栏目名称',
+  `ELLIPSIS` varchar(10) DEFAULT NULL COMMENT 'ELLIPSIS',
+  `SHOWROWS` varchar(10) DEFAULT NULL COMMENT '显示行数',
+  `IS_SHOWTIME` varchar(4) DEFAULT NULL COMMENT '是否显示时间',
+  `IS_SHOWSCROLL` varchar(4) DEFAULT NULL COMMENT '是否滚动',
+  `IS_RECURSIONFLAG` varchar(4) DEFAULT NULL COMMENT '是否源标志',
+  `IS_TAB` varchar(4) DEFAULT NULL COMMENT '是否表格',
+  `PAGEID` int(11) DEFAULT NULL COMMENT '页面ID',
+  `FILEPATH` varchar(100) DEFAULT NULL COMMENT '对应图片地址',
+  `FILENAME` varchar(100) DEFAULT NULL COMMENT '对应图标名称',
+  `IS_PER` varchar(4) DEFAULT NULL COMMENT '/ 是否按权限输出(0/忽略权限，1/只输出没有配置权限，2/只输出有权限的)',
+  PRIMARY KEY (`PC_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='页面组件配置信息表';
+
+-- ----------------------------
+-- Records of portletcomponentinfo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for portletinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `portletinfo`;
+CREATE TABLE `portletinfo` (
+  `PORTLET_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `PORTLET_CODE` varchar(50) DEFAULT NULL COMMENT '组件代码',
+  `PORTLET_NAME` varchar(100) DEFAULT NULL COMMENT '组件名称',
+  `EDIT_FLAG` varchar(5) DEFAULT NULL COMMENT '标志',
+  `PORTLETTYPE` varchar(10) DEFAULT NULL COMMENT '组件类型',
+  PRIMARY KEY (`PORTLET_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='可视化页面组件信息表';
+
+-- ----------------------------
+-- Records of portletinfo
+-- ----------------------------

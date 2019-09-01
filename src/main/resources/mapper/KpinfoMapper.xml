@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.KpinfoMapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.Kpinfo">
+    <id column="KP_ID" jdbcType="INTEGER" property="kpId" />
+    <result column="KP_NAME" jdbcType="VARCHAR" property="kpName" />
+    <result column="RELEASE_TIME" jdbcType="TIMESTAMP" property="releaseTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    KP_ID, KP_NAME, RELEASE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.KpinfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kpinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from kpinfo
+    where KP_ID = #{kpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from kpinfo
+    where KP_ID = #{kpId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.KpinfoExample">
+    delete from kpinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="owl2vowl.knowledgebase.entity.Kpinfo">
+    insert into kpinfo (KP_ID, KP_NAME, RELEASE_TIME
+      )
+    values (#{kpId,jdbcType=INTEGER}, #{kpName,jdbcType=VARCHAR}, #{releaseTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="owl2vowl.knowledgebase.entity.Kpinfo">
+    insert into kpinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kpId != null">
+        KP_ID,
+      </if>
+      <if test="kpName != null">
+        KP_NAME,
+      </if>
+      <if test="releaseTime != null">
+        RELEASE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kpId != null">
+        #{kpId,jdbcType=INTEGER},
+      </if>
+      <if test="kpName != null">
+        #{kpName,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null">
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.KpinfoExample" resultType="java.lang.Long">
+    select count(*) from kpinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update kpinfo
+    <set>
+      <if test="record.kpId != null">
+        KP_ID = #{record.kpId,jdbcType=INTEGER},
+      </if>
+      <if test="record.kpName != null">
+        KP_NAME = #{record.kpName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.releaseTime != null">
+        RELEASE_TIME = #{record.releaseTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update kpinfo
+    set KP_ID = #{record.kpId,jdbcType=INTEGER},
+      KP_NAME = #{record.kpName,jdbcType=VARCHAR},
+      RELEASE_TIME = #{record.releaseTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="owl2vowl.knowledgebase.entity.Kpinfo">
+    update kpinfo
+    <set>
+      <if test="kpName != null">
+        KP_NAME = #{kpName,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseTime != null">
+        RELEASE_TIME = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where KP_ID = #{kpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="owl2vowl.knowledgebase.entity.Kpinfo">
+    update kpinfo
+    set KP_NAME = #{kpName,jdbcType=VARCHAR},
+      RELEASE_TIME = #{releaseTime,jdbcType=TIMESTAMP}
+    where KP_ID = #{kpId,jdbcType=INTEGER}
+  </update>
+</mapper>

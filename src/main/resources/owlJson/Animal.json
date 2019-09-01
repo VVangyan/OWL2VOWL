@@ -1,0 +1,1087 @@
+{
+    
+  "_comment" : "Created with OWL2VOWL (version 0.3.3-SNAPSHOT),
+     http://vowl.visualdataweb.org",
+    
+  "header" : {
+        
+    "languages" : [
+             "undefined" 
+        ],
+        
+    "baseIris" : [
+             "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+             "http://www.w3.org/2000/01/rdf-schema",
+             "http://www.w3.org/2001/XMLSchema",
+             "http://www.owl-ontologies.com/animal.owl" 
+        ],
+        
+    "iri" : "http://www.owl-ontologies.com/animal.owl"
+  
+    },
+    
+  "namespace" : [
+         
+    ],
+    
+  "metrics" : {
+        
+    "classCount" : 10,
+        
+    "objectPropertyCount" : 6,
+        
+    "datatypePropertyCount" : 2,
+        
+    "individualCount" : 9
+  
+    },
+    
+  "class" : [
+         {
+            
+    "id" : "2",
+            
+    "type" : "rdfs:Datatype"
+  
+        },
+         {
+            
+    "id" : "15",
+            
+    "type" : "rdfs:Datatype"
+  
+        },
+         {
+            
+    "id" : "9",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "17",
+            
+    "type" : "owl:Thing"
+  
+        },
+         {
+            
+    "id" : "14",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "5",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "1",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "22",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "12",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "10",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "16",
+            
+    "type" : "owl:Class"
+  
+        },
+         {
+            
+    "id" : "19",
+            
+    "type" : "owl:intersectionOf"
+  
+        },
+         {
+            
+    "id" : "4",
+            
+    "type" : "owl:Class"
+  
+        }
+ 
+    ],
+    
+  "classAttribute" : [
+         {
+            
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+            
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+            
+    "id" : "2",
+            
+    "label" : {
+                
+      "IRI-based" : "string"
+    
+            }
+
+  
+        },
+         {
+            
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+            
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+            
+    "id" : "15",
+            
+    "label" : {
+                
+      "IRI-based" : "string"
+    
+            }
+
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Herbivore",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Herbivore"
+    
+            },
+            
+    "subClasses" : [
+                 "4" 
+            ],
+            
+    "id" : "9",
+            
+    "superClasses" : [
+                 "16" 
+            ]
+
+  
+        },
+         {
+            
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+            
+    "baseIri" : "http://owl2vowl.de",
+            
+    "id" : "17",
+            
+    "label" : {
+                
+      "undefined" : "Thing"
+    
+            }
+
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Lion",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Lion"
+    
+            },
+            
+    "individuals" : [
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#xiaolan",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "xiaolan"
+      
+                    }
+
+    
+                },
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#afei",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "afei"
+      
+                    }
+
+    
+                },
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#jingjing",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "jingjing"
+      
+                    }
+
+    
+                }
+ 
+            ],
+            
+    "id" : "14",
+            
+    "superClasses" : [
+                 "19" 
+            ]
+
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Leaf",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Leaf"
+    
+            },
+            
+    "id" : "5",
+            
+    "superClasses" : [
+                 "10" 
+            ]
+
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Zoo",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Zoo"
+    
+            },
+            
+    "individuals" : [
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#shanghai_zoo",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "shanghai_zoo"
+      
+                    }
+
+    
+                },
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#tianjin",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "tianjin"
+      
+                    }
+
+    
+                },
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#Beijing_Zoo",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "Beijing_Zoo"
+      
+                    }
+
+    
+                }
+ 
+            ],
+            
+    "id" : "1"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Tree",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Tree"
+    
+            },
+            
+    "id" : "22",
+            
+    "superClasses" : [
+                 "10" 
+            ]
+
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Branch",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Branch"
+    
+            },
+            
+    "id" : "12",
+            
+    "superClasses" : [
+                 "10" 
+            ]
+
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Plant",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Plant"
+    
+            },
+            
+    "subClasses" : [
+                 "5",
+                 "12",
+                 "22" 
+            ],
+            
+    "id" : "10"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Animal",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Animal"
+    
+            },
+            
+    "subClasses" : [
+                 "9" 
+            ],
+            
+    "id" : "16"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Carnivore",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Carnivore"
+    
+            },
+            
+    "subClasses" : [
+                 "14" 
+            ],
+            
+    "intersection" : [
+                 "16" 
+            ],
+            
+    "attributes" : [
+                 "intersection" 
+            ],
+            
+    "id" : "19"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Giraffe",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "instances" : 0,
+            
+    "label" : {
+                
+      "IRI-based" : "Giraffe"
+    
+            },
+            
+    "individuals" : [
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#mingming",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "mingming"
+      
+                    }
+
+    
+                },
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#Lanlan",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "Lanlan"
+      
+                    }
+
+    
+                },
+                 {
+                    
+      "iri" : "http://www.owl-ontologies.com/animal.owl#feifei",
+                    
+      "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+                    
+      "labels" : {
+                        
+        "IRI-based" : "feifei"
+      
+                    }
+
+    
+                }
+ 
+            ],
+            
+    "id" : "4",
+            
+    "superClasses" : [
+                 "9" 
+            ]
+
+  
+        }
+ 
+    ],
+    
+  "property" : [
+         {
+            
+    "id" : "0",
+            
+    "type" : "owl:datatypeProperty"
+  
+        },
+         {
+            
+    "id" : "3",
+            
+    "type" : "owl:allValuesFrom"
+  
+        },
+         {
+            
+    "id" : "8",
+            
+    "type" : "owl:allValuesFrom"
+  
+        },
+         {
+            
+    "id" : "11",
+            
+    "type" : "owl:allValuesFrom"
+  
+        },
+         {
+            
+    "id" : "13",
+            
+    "type" : "owl:allValuesFrom"
+  
+        },
+         {
+            
+    "id" : "18",
+            
+    "type" : "rdfs:SubClassOf"
+  
+        },
+         {
+            
+    "id" : "6",
+            
+    "type" : "owl:objectProperty"
+  
+        },
+         {
+            
+    "id" : "21",
+            
+    "type" : "owl:datatypeProperty"
+  
+        },
+         {
+            
+    "id" : "23",
+            
+    "type" : "owl:disjointWith"
+  
+        },
+         {
+            
+    "id" : "24",
+            
+    "type" : "owl:objectProperty"
+  
+        },
+         {
+            
+    "id" : "25",
+            
+    "type" : "owl:allValuesFrom"
+  
+        },
+         {
+            
+    "id" : "20",
+            
+    "type" : "owl:objectProperty"
+  
+        },
+         {
+            
+    "id" : "7",
+            
+    "type" : "owl:objectProperty"
+  
+        },
+         {
+            
+    "id" : "27",
+            
+    "type" : "rdfs:SubClassOf"
+  
+        },
+         {
+            
+    "id" : "28",
+            
+    "type" : "rdfs:SubClassOf"
+  
+        },
+         {
+            
+    "id" : "29",
+            
+    "type" : "rdfs:SubClassOf"
+  
+        },
+         {
+            
+    "id" : "30",
+            
+    "type" : "rdfs:SubClassOf"
+  
+        },
+         {
+            
+    "id" : "31",
+            
+    "type" : "rdfs:SubClassOf"
+  
+        }
+ 
+    ],
+    
+  "propertyAttribute" : [
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Address",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "2",
+            
+    "label" : {
+                
+      "IRI-based" : "Address"
+    
+            },
+            
+    "domain" : "1",
+            
+    "comment" : {
+                
+      "undefined" : "Address"
+    
+            },
+            
+    "attributes" : [
+                 "datatype" 
+            ],
+            
+    "id" : "0"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#eat",
+            
+    "inverse" : "6",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "5",
+            
+    "label" : {
+                
+      "IRI-based" : "eat"
+    
+            },
+            
+    "domain" : "4",
+            
+    "subproperty" : [
+                 "7" 
+            ],
+            
+    "attributes" : [
+                 "object",
+                 "allValues" 
+            ],
+            
+    "id" : "3"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#eat",
+            
+    "inverse" : "6",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "10",
+            
+    "label" : {
+                
+      "IRI-based" : "eat"
+    
+            },
+            
+    "domain" : "9",
+            
+    "subproperty" : [
+                 "7" 
+            ],
+            
+    "attributes" : [
+                 "object",
+                 "allValues" 
+            ],
+            
+    "id" : "8"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#is_part_of",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "12",
+            
+    "label" : {
+                
+      "IRI-based" : "is_part_of"
+    
+            },
+            
+    "domain" : "5",
+            
+    "attributes" : [
+                 "object",
+                 "allValues",
+                 "transitive" 
+            ],
+            
+    "id" : "11"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#eat",
+            
+    "inverse" : "6",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "9",
+            
+    "label" : {
+                
+      "IRI-based" : "eat"
+    
+            },
+            
+    "domain" : "14",
+            
+    "subproperty" : [
+                 "7" 
+            ],
+            
+    "attributes" : [
+                 "object",
+                 "allValues" 
+            ],
+            
+    "id" : "13"
+  
+        },
+         {
+            
+    "range" : "9",
+            
+    "domain" : "4",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "18"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#eated",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "17",
+            
+    "label" : {
+                
+      "IRI-based" : "eated"
+    
+            },
+            
+    "domain" : "17",
+            
+    "subproperty" : [
+                 "20" 
+            ],
+            
+    "attributes" : [
+                 "object" 
+            ],
+            
+    "id" : "6"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Tel",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "15",
+            
+    "label" : {
+                
+      "IRI-based" : "Tel"
+    
+            },
+            
+    "domain" : "1",
+            
+    "comment" : {
+                
+      "undefined" : "telephone number"
+    
+            },
+            
+    "attributes" : [
+                 "datatype" 
+            ],
+            
+    "id" : "21"
+  
+        },
+         {
+            
+    "range" : "16",
+            
+    "domain" : "10",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "23"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#Belonging",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "1",
+            
+    "label" : {
+                
+      "IRI-based" : "Belonging"
+    
+            },
+            
+    "domain" : "16",
+            
+    "attributes" : [
+                 "object" 
+            ],
+            
+    "id" : "24"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#is_part_of",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "22",
+            
+    "label" : {
+                
+      "IRI-based" : "is_part_of"
+    
+            },
+            
+    "domain" : "12",
+            
+    "attributes" : [
+                 "object",
+                 "allValues",
+                 "transitive" 
+            ],
+            
+    "id" : "25"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#inverse_of_eat_13",
+            
+    "inverse" : "7",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "17",
+            
+    "label" : {
+                
+      "IRI-based" : "inverse_of_eat_13"
+    
+            },
+            
+    "superproperty" : [
+                 "6" 
+            ],
+            
+    "domain" : "17",
+            
+    "attributes" : [
+                 "object" 
+            ],
+            
+    "id" : "20"
+  
+        },
+         {
+            
+    "iri" : "http://www.owl-ontologies.com/animal.owl#maineat",
+            
+    "baseIri" : "http://www.owl-ontologies.com/animal.owl",
+            
+    "range" : "17",
+            
+    "label" : {
+                
+      "IRI-based" : "maineat"
+    
+            },
+            
+    "superproperty" : [
+                 "26" 
+            ],
+            
+    "domain" : "17",
+            
+    "attributes" : [
+                 "object" 
+            ],
+            
+    "id" : "7"
+  
+        },
+         {
+            
+    "range" : "19",
+            
+    "domain" : "14",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "27"
+  
+        },
+         {
+            
+    "range" : "16",
+            
+    "domain" : "9",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "28"
+  
+        },
+         {
+            
+    "range" : "10",
+            
+    "domain" : "5",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "29"
+  
+        },
+         {
+            
+    "range" : "10",
+            
+    "domain" : "22",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "30"
+  
+        },
+         {
+            
+    "range" : "10",
+            
+    "domain" : "12",
+            
+    "attributes" : [
+                 "object",
+                 "anonymous" 
+            ],
+            
+    "id" : "31"
+  
+        }
+ 
+    ]
+
+
+}

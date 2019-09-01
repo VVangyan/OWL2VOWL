@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>文档上传</title>
+    <!--公用样式 start-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="../plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+    <script src="../libs/bootstrap.min.js"></script>
+    <script src="../libs/vue.min.js"></script>
+    <script src="../libs/validator.min.js"></script>
+    <script src="../plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../js/common.js"></script>
+    <!--公用样式 end-->
+
+
+</head>
+<body>
+<div class="recommend" id="recommend">
+    <div class="recommend-title black">
+        &gt;&nbsp;相关推荐
+    </div>
+    <div class="recommend-content">
+        <span id="recommend_content"></span>
+    </div>
+</div>
+<input type="hidden" th:value="${recommendOff}" id="recommendOff">
+</body>
+<!--当前页面样式-->
+<link rel="stylesheet" href="../css/recommend/index.css">
+<script src="../js/recommend/index.js"></script>
+<script>
+    //智能推荐开关  0.推荐关  1.推荐开
+    var recommendOff=$("#recommendOff").val();
+</script>
+</html>

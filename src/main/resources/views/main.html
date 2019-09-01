@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=9" >
+    <title>欢迎页</title>
+    <!--公用样式 start-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="libs/jquery.min.js"></script>
+    <script src="plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/vue.min.js"></script>
+    <script src="libs/validator.min.js"></script>
+    <script src="plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="plugins/ztree/jquery.ztree.all.min.js"></script>
+   <!--  <script src="js/common.js"></script> -->
+    <script src="libs/echarts/echarts.min.js"></script>
+    <!--公用样式 end-->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">基本信息</div>
+    <div class="panel-heading-content">
+        <div class="panel-heading-up">
+            <div class="panel-heading-up-orange">
+                <div class="panel-heading-up-orange-up">
+                    <div class="panel-heading-up-orange-up-left">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="panel-heading-up-orange-up-right color-1">
+                        <div class="panel-heading-up-orange-up-right-up">
+                            上传数量
+                        </div>
+                        <div class="panel-heading-up-orange-up-right-button">
+                            <span id="read01"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-heading-up-orange-button color-1">
+                    <div class="panel-heading-up-layout panel-width">
+                        <div class="panel-heading-up-text">
+                            待审核
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read02"></span>
+                        </div>
+                    </div>
+                    <div class="panel-heading-up-layout panel-width">
+                        <div class="panel-heading-up-text">
+                            审核通过
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read03"></span>
+                        </div>
+                    </div>
+                    <div class="panel-heading-up-layout panel-width">
+                        <div class="panel-heading-up-text">
+                            审核未通过
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read04"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading-up-lightblue">
+                <div class="panel-heading-up-orange-up">
+                    <div class="panel-heading-up-orange-up-left">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="panel-heading-up-orange-up-right color-2">
+                        <div class="panel-heading-up-orange-up-right-up">
+                            文档类型(数量)
+                        </div>
+                        <div class="panel-heading-up-orange-up-right-button">
+                            <span id="read05"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-heading-up-orange-button color-2">
+                    <div class="panel-heading-up-layout">
+                        <div class="panel-heading-up-text">
+                            <span id="read06"></span>
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read07"></span>
+                        </div>
+                    </div>
+                    <div class="panel-heading-up-layout">
+                        <div class="panel-heading-up-text">
+                            <span id="read08"></span>
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read09"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading-up-blue">
+                <div class="panel-heading-up-orange-up">
+                    <div class="panel-heading-up-orange-up-left">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="panel-heading-up-orange-up-right color-3">
+                        <div class="panel-heading-up-orange-up-right-up">
+                            文档总数
+                        </div>
+                        <div class="panel-heading-up-orange-up-right-button">
+                            <span id="read10"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-heading-up-orange-button color-3">
+                    <div class="panel-heading-up-layout">
+                        <div class="panel-heading-up-text">
+                            待审核文档数量
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read11"></span>
+                        </div>
+                    </div>
+                    <div class="panel-heading-up-layout">
+                        <div class="panel-heading-up-text">
+                            占比
+                        </div>
+                        <div class="panel-heading-up-text">
+                            <span id="read12"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading-button">
+            <div class="panel-heading-button-left" id="ymtj1"></div>
+            <div class="panel-heading-button-right" id="ymtj2"></div>
+        </div>
+    </div>
+</div>
+</body>
+<!--当前页面样式-->
+<link rel="stylesheet" href="css/main-index.css">
+<script src="js/main.js"></script>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>文档上传2.0</title>
+    <!--公用样式 start-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="../plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+    <script src="../libs/bootstrap.min.js"></script>
+    <script src="../libs/vue.min.js"></script>
+    <script src="../libs/validator.min.js"></script>
+    <script src="../plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../js/common.js"></script>
+    <!--公用样式 end-->
+
+    <!--日历插件css-->
+    <link rel="stylesheet" href="../libs/jedate-6.5.0/skin/jedate.css">
+    <!--文件上传插件css-->
+    <link rel="stylesheet" href="../plugins/easyUpload.js/easy-upload.css">
+    <!--当前页面样式-->
+    <link rel="stylesheet" href="../css/knowledge/knowledgeUpload.css">
+    <!--<script src="../js/common.js"></script>-->
+    <!--日历插件-->
+    <script src="../libs/jedate-6.5.0/src/jedate.js"></script>
+    <script src="../plugins/easyUpload.js/vendor/jquery.cookie-1.4.1.min.js"></script>
+
+
+    <link href="../libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="../libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!--公用js  end-->
+    <!--文件上传插件-->
+    <script src="../plugins/easyUpload.js/easyUpload.js"></script>
+    <style type="text/css">
+    	#handwrite:hover {
+			cursor: pointer;
+		}
+    </style>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <a class="btn btn-info" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <a class="btn btn-info" @click="preReleaseToDept"><i class="fa fa-paper-plane"></i>&nbsp;发布给部门</a>
+            <a class="btn btn-info" @click="preReleaseToUser"><i class="fa fa-paper-plane"></i>&nbsp;发布给用户</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+
+    <div class="base_div" v-show="!showFormList">
+        <form>
+            <div class="base_div_item_top">
+                <div class="base_div_item">
+                    <div class="base_div_item_left"></div>
+                    <div class="base_div_item_midele">
+                        <div class="div_title">
+                            填写资料信息：
+                        </div>
+                    </div>
+                    <div class="base_div_item_right"></div>
+                </div>
+                <div class="base_div_item">
+	                    <div class="base_div_item_left"></div>
+	                    <div class="base_div_item_midele">
+	                        <div class="div_input">
+	                            <div class="div_word_left">
+	                               标题
+	                            </div>
+	                            <div class="div_word_right">
+	                                <input type="text" class="form-control" v-model="document.documentTitle"
+                                       id="documentTitle" name="documentTitle"
+                                       placeholder="标题">
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="base_div_item_right"></div>
+	            </div>
+                <div class="base_div_item">
+                    <div class="base_div_item_left">
+
+                    </div>
+                    <div class="base_div_item_midele">
+                        <div class="div_input left">
+                            <div class="div_input_left">
+                                来源
+                            </div>
+                            <div class="div_input_right maginleft">
+                                <input type="text" class="form-control" v-model="document.documentOrigin"
+                                       id="documentOrigin" name="documentOrigin"
+                                       placeholder="来源">
+                            </div>
+                        </div>
+                        <div class="div_input left">
+                            <div class="div_input_left padding-left-text" style="width:100px;">
+                                作者<span id="handwrite" style="padding-left: 5px;color: blue;" title="点击手填，手动填写作者"><b>[手填]</b></span>
+                            </div>
+                            <div style="width:280px;" class="div_input_right maginleft" >
+                                <input type="text"  class="form-control" v-model="document.documentAuthor"
+                                       id="documentAuthor" name="documentAuthor"
+                                       placeholder="作者" readonly = "readonly" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="base_div_item_right"></div>
+                </div>
+<!--                 <div class="base_div_item">
+                    <div class="base_div_item_left">
+
+                    </div>
+                    <div class="base_div_item_midele">
+                        <div class="div_input">
+                            <div class="div_input_left">
+                                时间
+                            </div>
+                            <div class="div_input_right">
+                                <input type="text" class="form-control" id="documentUploadDate"
+                                       name="documentUploadDate" v-model="document.documentUploadDate"
+                                       placeholder="时间">
+                            </div>
+                        </div>
+                        <div class="div_input">
+                            <div class="div_input_left">
+                                摘要
+                            </div>
+                            <div class="div_input_right">
+
+                                                               </div>
+                        </div>
+                    </div>
+                    <div class="base_div_item_right"></div>
+                </div> -->
+				<!--
+					<div class="base_div_item">
+	                    <div class="base_div_item_left"></div>
+	                    <div class="base_div_item_midele">
+	                        <div class="div_input">
+	                            <div class="div_word_left">
+	                                类型
+	                            </div>
+	                            <div class="div_word_right">
+	                                <select class="form-control" v-model="selected" name="documentType">
+	                                    <option v-for="type in types" :value="type.documentType">{{type.documentType}}
+	                                    </option>
+	                                </select>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="base_div_item_right"></div>
+	                </div>
+                -->
+                <div class="base_div_item">
+                    <div class="base_div_item_left"></div>
+                    <div class="base_div_item_midele">
+                        <div class="div_input">
+                            <div class="div_word_left">
+                                关键词
+                            </div>
+                            <div class="div_word_right"><input type="email" class="form-control" id="documentKeyword"
+                                                               name="documentKeyword" v-model="document.documentKeyword"
+                                                               placeholder="关键词，多个关键字请用 逗号分隔"></div>
+                        </div>
+                    </div>
+                    <div class="base_div_item_right"></div>
+                </div>
+                <div class="base_div_item" style="height: 70px">
+                    <div class="base_div_item_left" style="height: 70px"></div>
+                    <div class="base_div_item_midele" style="height: 70px">
+                        <div class="div_input">
+                            <div class="div_word_left padding-top">
+                                摘要
+                            </div>
+                            <div class="div_word_right">
+                              <textarea type="text" class="form-control" id="documentAbstract"
+                                                                name="documentAbstract"
+                                                                v-model="document.documentAbstract"
+                                                                placeholder="摘要"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="base_div_item_right" style="height: 70px"></div>
+                </div>
+                <div class="base_div_item" style="height: 70px">
+                    <div class="base_div_item_left" style="height: 70px"></div>
+                    <div class="base_div_item_midele" style="height: 70px">
+                        <div class="div_input">
+                            <div class="div_word_left padding-top">
+                                备注
+                            </div>
+                            <div class="div_word_right">
+                            	<textarea type="text" class="form-control" id="documentMarks"
+                                                               name="documentMarks" v-model="document.documentMarks"
+                                                               placeholder="备注">
+                                 </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="base_div_item_right" style="height: 70px"></div>
+
+                </div>
+                <div class="base_div_item">
+                    <div class="base_div_item_left"></div>
+                    <div class="base_div_item_midele">
+                        <div class="div_input">
+                            <div class="div_word_left">
+                                标签
+                            </div>
+                            <div class="div_word_right">
+                                <select class="js-example-basic-multiple" style="width: 723px;max-width: 830px;"
+                                        name="lableStrs" multiple="multiple">
+                                    <option v-for="lable in lableList" :value="lable.lableId+'_'+lable.lableName">
+                                        {{lable.lableName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="base_div_item_right"></div>
+
+                </div>
+                <div class="base_div_item" id="msgDiv">
+
+                </div>
+            </div>
+        </form>
+        <div class="base_div_item_down">
+            <div id="easyContainer"></div>
+
+        </div>
+    </div>
+
+    <div v-show="!showDeptList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">选择部门</div>
+                <div class="col-sm-10">
+                    <!-- <select class="form-control" v-model="deptSelected">
+                       <option v-for="dept in deptList" :value="dept.id+'_'+dept.departmentName" >{{dept.departmentName}}</option>
+                   </select>   -->
+                    <ul id="deptTree" class="ztree"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="deptAll" value="全选"/>
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-primary" @click="deptRelease" value="发布"/>
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-primary" @click="deptTakeBack" value="收回"/>
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+    <div v-show="!showUserList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">选择用户</div>
+                <div class="col-sm-10">
+                    <ul id="userTree" class="ztree"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="userAll" value="全选"/>
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-primary" @click="userRelease" value="发布"/>
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-primary" @click="userTakeBack" value="收回"/>
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script src="../js/knowledge/knowledgeUpload.js"></script>
+<script type="text/javascript">
+$(function(){
+	var hand=$("#handwrite")
+	hand.click(function(){
+		$("#documentAuthor").removeAttr("readonly")
+	})
+})
+</script>
+</html>

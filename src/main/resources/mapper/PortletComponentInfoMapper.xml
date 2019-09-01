@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.PortletComponentInfoMapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.PortletComponentInfo">
+    <id column="PC_ID" jdbcType="INTEGER" property="pcId" />
+    <result column="PORTLET_ID" jdbcType="VARCHAR" property="portletId" />
+    <result column="PORTLET_TITLE" jdbcType="VARCHAR" property="portletTitle" />
+    <result column="PORTLET_CATEID" jdbcType="VARCHAR" property="portletCateid" />
+    <result column="PORTLET_CATENAME" jdbcType="VARCHAR" property="portletCatename" />
+    <result column="ELLIPSIS" jdbcType="VARCHAR" property="ellipsis" />
+    <result column="SHOWROWS" jdbcType="VARCHAR" property="showrows" />
+    <result column="IS_SHOWTIME" jdbcType="VARCHAR" property="isShowtime" />
+    <result column="IS_SHOWSCROLL" jdbcType="VARCHAR" property="isShowscroll" />
+    <result column="IS_RECURSIONFLAG" jdbcType="VARCHAR" property="isRecursionflag" />
+    <result column="IS_TAB" jdbcType="VARCHAR" property="isTab" />
+    <result column="PAGEID" jdbcType="INTEGER" property="pageid" />
+    <result column="FILEPATH" jdbcType="VARCHAR" property="filepath" />
+    <result column="FILENAME" jdbcType="VARCHAR" property="filename" />
+    <result column="IS_PER" jdbcType="VARCHAR" property="isPer" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PC_ID, PORTLET_ID, PORTLET_TITLE, PORTLET_CATEID, PORTLET_CATENAME, ELLIPSIS, SHOWROWS, 
+    IS_SHOWTIME, IS_SHOWSCROLL, IS_RECURSIONFLAG, IS_TAB, PAGEID, FILEPATH, FILENAME, 
+    IS_PER
+  </sql>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from portletcomponentinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from portletcomponentinfo
+    where PC_ID = #{pcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from portletcomponentinfo
+    where PC_ID = #{pcId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfoExample">
+    delete from portletcomponentinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfo">
+    insert into portletcomponentinfo (PC_ID, PORTLET_ID, PORTLET_TITLE, 
+      PORTLET_CATEID, PORTLET_CATENAME, ELLIPSIS, 
+      SHOWROWS, IS_SHOWTIME, IS_SHOWSCROLL, 
+      IS_RECURSIONFLAG, IS_TAB, PAGEID, 
+      FILEPATH, FILENAME, IS_PER
+      )
+    values (#{pcId,jdbcType=INTEGER}, #{portletId,jdbcType=VARCHAR}, #{portletTitle,jdbcType=VARCHAR}, 
+      #{portletCateid,jdbcType=VARCHAR}, #{portletCatename,jdbcType=VARCHAR}, #{ellipsis,jdbcType=VARCHAR}, 
+      #{showrows,jdbcType=VARCHAR}, #{isShowtime,jdbcType=VARCHAR}, #{isShowscroll,jdbcType=VARCHAR}, 
+      #{isRecursionflag,jdbcType=VARCHAR}, #{isTab,jdbcType=VARCHAR}, #{pageid,jdbcType=INTEGER}, 
+      #{filepath,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{isPer,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfo">
+    insert into portletcomponentinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pcId != null">
+        PC_ID,
+      </if>
+      <if test="portletId != null">
+        PORTLET_ID,
+      </if>
+      <if test="portletTitle != null">
+        PORTLET_TITLE,
+      </if>
+      <if test="portletCateid != null">
+        PORTLET_CATEID,
+      </if>
+      <if test="portletCatename != null">
+        PORTLET_CATENAME,
+      </if>
+      <if test="ellipsis != null">
+        ELLIPSIS,
+      </if>
+      <if test="showrows != null">
+        SHOWROWS,
+      </if>
+      <if test="isShowtime != null">
+        IS_SHOWTIME,
+      </if>
+      <if test="isShowscroll != null">
+        IS_SHOWSCROLL,
+      </if>
+      <if test="isRecursionflag != null">
+        IS_RECURSIONFLAG,
+      </if>
+      <if test="isTab != null">
+        IS_TAB,
+      </if>
+      <if test="pageid != null">
+        PAGEID,
+      </if>
+      <if test="filepath != null">
+        FILEPATH,
+      </if>
+      <if test="filename != null">
+        FILENAME,
+      </if>
+      <if test="isPer != null">
+        IS_PER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pcId != null">
+        #{pcId,jdbcType=INTEGER},
+      </if>
+      <if test="portletId != null">
+        #{portletId,jdbcType=VARCHAR},
+      </if>
+      <if test="portletTitle != null">
+        #{portletTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="portletCateid != null">
+        #{portletCateid,jdbcType=VARCHAR},
+      </if>
+      <if test="portletCatename != null">
+        #{portletCatename,jdbcType=VARCHAR},
+      </if>
+      <if test="ellipsis != null">
+        #{ellipsis,jdbcType=VARCHAR},
+      </if>
+      <if test="showrows != null">
+        #{showrows,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowtime != null">
+        #{isShowtime,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowscroll != null">
+        #{isShowscroll,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecursionflag != null">
+        #{isRecursionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="isTab != null">
+        #{isTab,jdbcType=VARCHAR},
+      </if>
+      <if test="pageid != null">
+        #{pageid,jdbcType=INTEGER},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="isPer != null">
+        #{isPer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfoExample" resultType="java.lang.Long">
+    select count(*) from portletcomponentinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update portletcomponentinfo
+    <set>
+      <if test="record.pcId != null">
+        PC_ID = #{record.pcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.portletId != null">
+        PORTLET_ID = #{record.portletId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.portletTitle != null">
+        PORTLET_TITLE = #{record.portletTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.portletCateid != null">
+        PORTLET_CATEID = #{record.portletCateid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.portletCatename != null">
+        PORTLET_CATENAME = #{record.portletCatename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ellipsis != null">
+        ELLIPSIS = #{record.ellipsis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showrows != null">
+        SHOWROWS = #{record.showrows,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShowtime != null">
+        IS_SHOWTIME = #{record.isShowtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShowscroll != null">
+        IS_SHOWSCROLL = #{record.isShowscroll,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRecursionflag != null">
+        IS_RECURSIONFLAG = #{record.isRecursionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTab != null">
+        IS_TAB = #{record.isTab,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageid != null">
+        PAGEID = #{record.pageid,jdbcType=INTEGER},
+      </if>
+      <if test="record.filepath != null">
+        FILEPATH = #{record.filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filename != null">
+        FILENAME = #{record.filename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPer != null">
+        IS_PER = #{record.isPer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update portletcomponentinfo
+    set PC_ID = #{record.pcId,jdbcType=INTEGER},
+      PORTLET_ID = #{record.portletId,jdbcType=VARCHAR},
+      PORTLET_TITLE = #{record.portletTitle,jdbcType=VARCHAR},
+      PORTLET_CATEID = #{record.portletCateid,jdbcType=VARCHAR},
+      PORTLET_CATENAME = #{record.portletCatename,jdbcType=VARCHAR},
+      ELLIPSIS = #{record.ellipsis,jdbcType=VARCHAR},
+      SHOWROWS = #{record.showrows,jdbcType=VARCHAR},
+      IS_SHOWTIME = #{record.isShowtime,jdbcType=VARCHAR},
+      IS_SHOWSCROLL = #{record.isShowscroll,jdbcType=VARCHAR},
+      IS_RECURSIONFLAG = #{record.isRecursionflag,jdbcType=VARCHAR},
+      IS_TAB = #{record.isTab,jdbcType=VARCHAR},
+      PAGEID = #{record.pageid,jdbcType=INTEGER},
+      FILEPATH = #{record.filepath,jdbcType=VARCHAR},
+      FILENAME = #{record.filename,jdbcType=VARCHAR},
+      IS_PER = #{record.isPer,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfo">
+    update portletcomponentinfo
+    <set>
+      <if test="portletId != null">
+        PORTLET_ID = #{portletId,jdbcType=VARCHAR},
+      </if>
+      <if test="portletTitle != null">
+        PORTLET_TITLE = #{portletTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="portletCateid != null">
+        PORTLET_CATEID = #{portletCateid,jdbcType=VARCHAR},
+      </if>
+      <if test="portletCatename != null">
+        PORTLET_CATENAME = #{portletCatename,jdbcType=VARCHAR},
+      </if>
+      <if test="ellipsis != null">
+        ELLIPSIS = #{ellipsis,jdbcType=VARCHAR},
+      </if>
+      <if test="showrows != null">
+        SHOWROWS = #{showrows,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowtime != null">
+        IS_SHOWTIME = #{isShowtime,jdbcType=VARCHAR},
+      </if>
+      <if test="isShowscroll != null">
+        IS_SHOWSCROLL = #{isShowscroll,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecursionflag != null">
+        IS_RECURSIONFLAG = #{isRecursionflag,jdbcType=VARCHAR},
+      </if>
+      <if test="isTab != null">
+        IS_TAB = #{isTab,jdbcType=VARCHAR},
+      </if>
+      <if test="pageid != null">
+        PAGEID = #{pageid,jdbcType=INTEGER},
+      </if>
+      <if test="filepath != null">
+        FILEPATH = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        FILENAME = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="isPer != null">
+        IS_PER = #{isPer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PC_ID = #{pcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="owl2vowl.knowledgebase.entity.PortletComponentInfo">
+    update portletcomponentinfo
+    set PORTLET_ID = #{portletId,jdbcType=VARCHAR},
+      PORTLET_TITLE = #{portletTitle,jdbcType=VARCHAR},
+      PORTLET_CATEID = #{portletCateid,jdbcType=VARCHAR},
+      PORTLET_CATENAME = #{portletCatename,jdbcType=VARCHAR},
+      ELLIPSIS = #{ellipsis,jdbcType=VARCHAR},
+      SHOWROWS = #{showrows,jdbcType=VARCHAR},
+      IS_SHOWTIME = #{isShowtime,jdbcType=VARCHAR},
+      IS_SHOWSCROLL = #{isShowscroll,jdbcType=VARCHAR},
+      IS_RECURSIONFLAG = #{isRecursionflag,jdbcType=VARCHAR},
+      IS_TAB = #{isTab,jdbcType=VARCHAR},
+      PAGEID = #{pageid,jdbcType=INTEGER},
+      FILEPATH = #{filepath,jdbcType=VARCHAR},
+      FILENAME = #{filename,jdbcType=VARCHAR},
+      IS_PER = #{isPer,jdbcType=VARCHAR}
+    where PC_ID = #{pcId,jdbcType=INTEGER}
+  </update>
+</mapper>

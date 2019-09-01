@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title>文档标签2.0</title>
+	<!--公用样式 start-->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+	<link rel="stylesheet" href="../plugins/ztree/css/metroStyle/metroStyle.css">
+	<link rel="stylesheet" href="../css/main.css">
+	<script src="../libs/jquery.min.js"></script>
+	<script src="../plugins/layer/layer.js"></script>
+	<link rel="stylesheet" href="../plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+	<script src="../libs/bootstrap.min.js"></script>
+	<script src="../libs/vue.min.js"></script>
+	<script src="../libs/validator.min.js"></script>
+	<script src="../plugins/jqgrid/grid.locale-cn.js"></script>
+	<script src="../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+	<script src="../plugins/ztree/jquery.ztree.all.min.js"></script>
+	<script src="../js/common.js"></script>
+	<!--公用样式 end-->
+
+	<!--日历插件css-->
+	<link rel="stylesheet" href="../libs/jedate-6.5.0/skin/jedate.css">
+	<!--文件上传插件css-->
+	<link rel="stylesheet" href="../plugins/easyUpload.js/easy-upload.css">
+	<!--日历插件-->
+	<script src="../libs/jedate-6.5.0/src/jedate.js"></script>
+	<script src="../plugins/easyUpload.js/vendor/jquery.cookie-1.4.1.min.js"></script>
+	<!--公用js  end-->
+	<!--文件上传插件-->
+	<script src="../plugins/easyUpload.js/easyUpload.js"></script>
+</head>
+<body>
+	<div class="main">
+		<span id="lable_list"></span>
+		<div class="main-content add">
+			<i class="fa fa-plus fa-plus-add"></i>
+		</div>
+		<div id="page" class="page"></div>
+	</div>
+
+	<div id="updateInset" class="panel panel-default" style="display: none;">
+		<div class="panel-heading">标签修改</div>
+		<form class="form-horizontal">
+			<input type="hidden" id="lableId"/>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">标签名称</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="lableName" v-model="document.lableName" placeholder="标签名称"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">上级标签名称</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="lablePreName" placeholder="上级标签名称" disabled/>
+					<input type="hidden" id="lablePreid" placeholder="上级标签名称"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">描叙</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="lableDesc" placeholder="描叙"/>
+				</div>
+			</div>
+<!-- 			<div class="form-group">
+				<div class="col-sm-2 control-label">创建时间</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="lableDate" placeholder="创建时间"/>
+				</div>
+			</div> -->
+			<div class="form-group">
+				<div class="col-sm-2 control-label">排序</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="lableSort" placeholder="排序"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label"></div>
+				<input type="button" class="btn btn-primary" id="determine" value="确定" />
+				&nbsp;&nbsp;
+				<input type="button"class="btn btn-warning" id="return" value="返回" />
+			</div>
+		</form>
+	</div>
+</body>
+<!--当前页面样式-->
+<link rel="stylesheet" href="../css/knowledge/knowledgeTag_New.css">
+<script src="../js/knowledge/knowledgeTag_New.js"></script>
+</html>

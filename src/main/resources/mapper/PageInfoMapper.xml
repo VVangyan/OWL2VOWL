@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.PageInfoMapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.PageInfo">
+    <id column="PAGE_ID" jdbcType="INTEGER" property="pageId" />
+    <result column="PAGE_NAME" jdbcType="VARCHAR" property="pageName" />
+    <result column="CREATE_USERID" jdbcType="INTEGER" property="createUserid" />
+    <result column="CREATE_USERNAME" jdbcType="VARCHAR" property="createUsername" />
+    <result column="DEPTID" jdbcType="VARCHAR" property="deptid" />
+    <result column="PAGE_URL" jdbcType="VARCHAR" property="pageUrl" />
+    <result column="UNIQUE_NAME" jdbcType="VARCHAR" property="uniqueName" />
+    <result column="PAGE_STYLE" jdbcType="VARCHAR" property="pageStyle" />
+    <result column="ATTR1" jdbcType="VARCHAR" property="attr1" />
+    <result column="ATTR2" jdbcType="VARCHAR" property="attr2" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="owl2vowl.knowledgebase.entity.PageInfo">
+    <result column="PAGE_CONFIG" jdbcType="LONGVARCHAR" property="pageConfig" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PAGE_ID, PAGE_NAME, CREATE_USERID, CREATE_USERNAME, DEPTID, PAGE_URL, UNIQUE_NAME, 
+    PAGE_STYLE, ATTR1, ATTR2
+  </sql>
+  <sql id="Blob_Column_List">
+    PAGE_CONFIG
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="owl2vowl.knowledgebase.entity.PageInfoExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pageinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.PageInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pageinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pageinfo
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pageinfo
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.PageInfoExample">
+    delete from pageinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="owl2vowl.knowledgebase.entity.PageInfo">
+    insert into pageinfo (PAGE_ID, PAGE_NAME, CREATE_USERID, 
+      CREATE_USERNAME, DEPTID, PAGE_URL, 
+      UNIQUE_NAME, PAGE_STYLE, ATTR1, 
+      ATTR2, PAGE_CONFIG)
+    values (#{pageId,jdbcType=INTEGER}, #{pageName,jdbcType=VARCHAR}, #{createUserid,jdbcType=INTEGER}, 
+      #{createUsername,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, #{pageUrl,jdbcType=VARCHAR}, 
+      #{uniqueName,jdbcType=VARCHAR}, #{pageStyle,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, 
+      #{attr2,jdbcType=VARCHAR}, #{pageConfig,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="owl2vowl.knowledgebase.entity.PageInfo">
+    insert into pageinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pageId != null">
+        PAGE_ID,
+      </if>
+      <if test="pageName != null">
+        PAGE_NAME,
+      </if>
+      <if test="createUserid != null">
+        CREATE_USERID,
+      </if>
+      <if test="createUsername != null">
+        CREATE_USERNAME,
+      </if>
+      <if test="deptid != null">
+        DEPTID,
+      </if>
+      <if test="pageUrl != null">
+        PAGE_URL,
+      </if>
+      <if test="uniqueName != null">
+        UNIQUE_NAME,
+      </if>
+      <if test="pageStyle != null">
+        PAGE_STYLE,
+      </if>
+      <if test="attr1 != null">
+        ATTR1,
+      </if>
+      <if test="attr2 != null">
+        ATTR2,
+      </if>
+      <if test="pageConfig != null">
+        PAGE_CONFIG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pageId != null">
+        #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="pageName != null">
+        #{pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserid != null">
+        #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="createUsername != null">
+        #{createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="pageUrl != null">
+        #{pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueName != null">
+        #{uniqueName,jdbcType=VARCHAR},
+      </if>
+      <if test="pageStyle != null">
+        #{pageStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null">
+        #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null">
+        #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="pageConfig != null">
+        #{pageConfig,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.PageInfoExample" resultType="java.lang.Long">
+    select count(*) from pageinfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pageinfo
+    <set>
+      <if test="record.pageId != null">
+        PAGE_ID = #{record.pageId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pageName != null">
+        PAGE_NAME = #{record.pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserid != null">
+        CREATE_USERID = #{record.createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUsername != null">
+        CREATE_USERNAME = #{record.createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null">
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageUrl != null">
+        PAGE_URL = #{record.pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueName != null">
+        UNIQUE_NAME = #{record.uniqueName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageStyle != null">
+        PAGE_STYLE = #{record.pageStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr1 != null">
+        ATTR1 = #{record.attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr2 != null">
+        ATTR2 = #{record.attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageConfig != null">
+        PAGE_CONFIG = #{record.pageConfig,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update pageinfo
+    set PAGE_ID = #{record.pageId,jdbcType=INTEGER},
+      PAGE_NAME = #{record.pageName,jdbcType=VARCHAR},
+      CREATE_USERID = #{record.createUserid,jdbcType=INTEGER},
+      CREATE_USERNAME = #{record.createUsername,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      PAGE_URL = #{record.pageUrl,jdbcType=VARCHAR},
+      UNIQUE_NAME = #{record.uniqueName,jdbcType=VARCHAR},
+      PAGE_STYLE = #{record.pageStyle,jdbcType=VARCHAR},
+      ATTR1 = #{record.attr1,jdbcType=VARCHAR},
+      ATTR2 = #{record.attr2,jdbcType=VARCHAR},
+      PAGE_CONFIG = #{record.pageConfig,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pageinfo
+    set PAGE_ID = #{record.pageId,jdbcType=INTEGER},
+      PAGE_NAME = #{record.pageName,jdbcType=VARCHAR},
+      CREATE_USERID = #{record.createUserid,jdbcType=INTEGER},
+      CREATE_USERNAME = #{record.createUsername,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      PAGE_URL = #{record.pageUrl,jdbcType=VARCHAR},
+      UNIQUE_NAME = #{record.uniqueName,jdbcType=VARCHAR},
+      PAGE_STYLE = #{record.pageStyle,jdbcType=VARCHAR},
+      ATTR1 = #{record.attr1,jdbcType=VARCHAR},
+      ATTR2 = #{record.attr2,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="owl2vowl.knowledgebase.entity.PageInfo">
+    update pageinfo
+    <set>
+      <if test="pageName != null">
+        PAGE_NAME = #{pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserid != null">
+        CREATE_USERID = #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="createUsername != null">
+        CREATE_USERNAME = #{createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="pageUrl != null">
+        PAGE_URL = #{pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueName != null">
+        UNIQUE_NAME = #{uniqueName,jdbcType=VARCHAR},
+      </if>
+      <if test="pageStyle != null">
+        PAGE_STYLE = #{pageStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null">
+        ATTR1 = #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null">
+        ATTR2 = #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="pageConfig != null">
+        PAGE_CONFIG = #{pageConfig,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="owl2vowl.knowledgebase.entity.PageInfo">
+    update pageinfo
+    set PAGE_NAME = #{pageName,jdbcType=VARCHAR},
+      CREATE_USERID = #{createUserid,jdbcType=INTEGER},
+      CREATE_USERNAME = #{createUsername,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      PAGE_URL = #{pageUrl,jdbcType=VARCHAR},
+      UNIQUE_NAME = #{uniqueName,jdbcType=VARCHAR},
+      PAGE_STYLE = #{pageStyle,jdbcType=VARCHAR},
+      ATTR1 = #{attr1,jdbcType=VARCHAR},
+      ATTR2 = #{attr2,jdbcType=VARCHAR},
+      PAGE_CONFIG = #{pageConfig,jdbcType=LONGVARCHAR}
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="owl2vowl.knowledgebase.entity.PageInfo">
+    update pageinfo
+    set PAGE_NAME = #{pageName,jdbcType=VARCHAR},
+      CREATE_USERID = #{createUserid,jdbcType=INTEGER},
+      CREATE_USERNAME = #{createUsername,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      PAGE_URL = #{pageUrl,jdbcType=VARCHAR},
+      UNIQUE_NAME = #{uniqueName,jdbcType=VARCHAR},
+      PAGE_STYLE = #{pageStyle,jdbcType=VARCHAR},
+      ATTR1 = #{attr1,jdbcType=VARCHAR},
+      ATTR2 = #{attr2,jdbcType=VARCHAR}
+    where PAGE_ID = #{pageId,jdbcType=INTEGER}
+  </update>
+</mapper>

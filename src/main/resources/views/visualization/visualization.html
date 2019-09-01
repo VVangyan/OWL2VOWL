@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>知识可视化</title>
+    <!--公用样式 start-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="../plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+    <script src="../libs/bootstrap.min.js"></script>
+    <script src="../libs/vue.min.js"></script>
+    <script src="../libs/validator.min.js"></script>
+    <script src="../plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
+    <!--公用样式 end-->
+
+    <!--日历插件css-->
+    <link rel="stylesheet" href="../libs/jedate-6.5.0/skin/jedate.css">
+    <!--文件上传插件css-->
+    <link rel="stylesheet" href="../plugins/easyUpload.js/easy-upload.css">
+    <!--当前页面样式-->
+    <link rel="stylesheet" href="../css/visualization/visualization.css">
+    <!--<script src="../js/common.js"></script>-->
+    <!--日历插件-->
+    <script src="../libs/jedate-6.5.0/src/jedate.js"></script>
+    <script src="../plugins/easyUpload.js/vendor/jquery.cookie-1.4.1.min.js"></script>
+    <!--公用js  end-->
+    <!--文件上传插件-->
+    <script src="../plugins/easyUpload.js/easyUpload.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <a  class="btn btn-info" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <!--<a  class="btn btn-primary" ><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <a class="btn btn-primary" ><i class="fa fa-trash-o"></i>&nbsp;删除</a>-->
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+	<div class="base_div" v-show="!showList" >
+        <form >
+            <div class="base_div_item_top">
+                <div class="base_div_item">
+                    <div class="base_div_item_left"></div>
+                    <div class="base_div_item_midele">
+                        <div class="div_title">
+                            知识图谱更新：
+                        </div>
+                    </div>
+                    <div class="base_div_item_right"></div>
+                </div>
+                <div class="base_div_item">
+                	<div class="space_width_180px"></div>
+                	<div class="space_width_120px"></div>
+                	<div class="item_check_div">
+                		<input id="r1" type="radio" value="0" name="gender">上传新的OWL文件</input>
+                	</div>
+                	<div class="space_width_150px"></div>
+                	<div class="item_check_div">
+                		<input id="r1" type="radio" value="0" name="gender">替换原有的OWL文件</input>
+                	</div>
+                	<div class="space_width_10px"></div>
+                </div>
+                <div class="base_div_item">
+                	<div class="space_width_180px"></div>
+                	<div class="space_width_120px">OWL文件：</div>
+                	<div class="item_check_div">
+                		<div><input type="file" name="fileUpload" class="fileName" id="owlFile"/></div>
+                	</div>
+                	
+                </div>
+                <!-- <div class="base_div_item">
+                	<div class="space_width_180px"></div>
+                	<div class="space_width_120px">ModelName：</div>
+                	<div class="item_check_div">
+                		<input type="text" class="form-control" name="ModelName" placeholder="ModelName"/>
+                	</div>
+                	
+                </div> -->
+                <div class="base_div_item"  id="msgDiv">
+					<div class="space_width_flex"></div>
+					<div class="upload_botton" id="upload">开始上传</div>
+					<div class="space_width_10px"></div>
+					<div class="upload_botton" id="cancel">取消上传</div>
+					<div class="space_width_flex"></div>
+                </div>
+            </div>
+        </form>
+        <div class="base_div_item_down">
+            <div id="easyContainer"></div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="../js/visualization/visualization.js"></script>
+</html>

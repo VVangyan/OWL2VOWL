@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.SenssorMonitor1Mapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.SenssorMonitor1">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="SensorNo" jdbcType="VARCHAR" property="sensorno" />
+    <result column="NodeID" jdbcType="VARCHAR" property="nodeid" />
+    <result column="TimeStamp" jdbcType="VARCHAR" property="timestamp" />
+    <result column="SampleRate" jdbcType="DOUBLE" property="samplerate" />
+    <result column="NumSamples" jdbcType="DOUBLE" property="numsamples" />
+    <result column="MonitoringValue1" jdbcType="VARCHAR" property="monitoringvalue1" />
+    <result column="Spectrum1" jdbcType="VARCHAR" property="spectrum1" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, SensorNo, NodeID, TimeStamp, SampleRate, NumSamples, MonitoringValue1, Spectrum1
+  </sql>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_senssor_monitor1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_senssor_monitor1
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_senssor_monitor1
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1Example">
+    delete from t_senssor_monitor1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1">
+    insert into t_senssor_monitor1 (ID, SensorNo, NodeID, 
+      TimeStamp, SampleRate, NumSamples, 
+      MonitoringValue1, Spectrum1)
+    values (#{id,jdbcType=BIGINT}, #{sensorno,jdbcType=VARCHAR}, #{nodeid,jdbcType=VARCHAR}, 
+      #{timestamp,jdbcType=VARCHAR}, #{samplerate,jdbcType=DOUBLE}, #{numsamples,jdbcType=DOUBLE}, 
+      #{monitoringvalue1,jdbcType=VARCHAR}, #{spectrum1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1">
+    insert into t_senssor_monitor1
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="sensorno != null">
+        SensorNo,
+      </if>
+      <if test="nodeid != null">
+        NodeID,
+      </if>
+      <if test="timestamp != null">
+        TimeStamp,
+      </if>
+      <if test="samplerate != null">
+        SampleRate,
+      </if>
+      <if test="numsamples != null">
+        NumSamples,
+      </if>
+      <if test="monitoringvalue1 != null">
+        MonitoringValue1,
+      </if>
+      <if test="spectrum1 != null">
+        Spectrum1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sensorno != null">
+        #{sensorno,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeid != null">
+        #{nodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="samplerate != null">
+        #{samplerate,jdbcType=DOUBLE},
+      </if>
+      <if test="numsamples != null">
+        #{numsamples,jdbcType=DOUBLE},
+      </if>
+      <if test="monitoringvalue1 != null">
+        #{monitoringvalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="spectrum1 != null">
+        #{spectrum1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1Example" resultType="java.lang.Long">
+    select count(*) from t_senssor_monitor1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_senssor_monitor1
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sensorno != null">
+        SensorNo = #{record.sensorno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodeid != null">
+        NodeID = #{record.nodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timestamp != null">
+        TimeStamp = #{record.timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.samplerate != null">
+        SampleRate = #{record.samplerate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.numsamples != null">
+        NumSamples = #{record.numsamples,jdbcType=DOUBLE},
+      </if>
+      <if test="record.monitoringvalue1 != null">
+        MonitoringValue1 = #{record.monitoringvalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spectrum1 != null">
+        Spectrum1 = #{record.spectrum1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_senssor_monitor1
+    set ID = #{record.id,jdbcType=BIGINT},
+      SensorNo = #{record.sensorno,jdbcType=VARCHAR},
+      NodeID = #{record.nodeid,jdbcType=VARCHAR},
+      TimeStamp = #{record.timestamp,jdbcType=VARCHAR},
+      SampleRate = #{record.samplerate,jdbcType=DOUBLE},
+      NumSamples = #{record.numsamples,jdbcType=DOUBLE},
+      MonitoringValue1 = #{record.monitoringvalue1,jdbcType=VARCHAR},
+      Spectrum1 = #{record.spectrum1,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1">
+    update t_senssor_monitor1
+    <set>
+      <if test="sensorno != null">
+        SensorNo = #{sensorno,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeid != null">
+        NodeID = #{nodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        TimeStamp = #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="samplerate != null">
+        SampleRate = #{samplerate,jdbcType=DOUBLE},
+      </if>
+      <if test="numsamples != null">
+        NumSamples = #{numsamples,jdbcType=DOUBLE},
+      </if>
+      <if test="monitoringvalue1 != null">
+        MonitoringValue1 = #{monitoringvalue1,jdbcType=VARCHAR},
+      </if>
+      <if test="spectrum1 != null">
+        Spectrum1 = #{spectrum1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="owl2vowl.knowledgebase.entity.SenssorMonitor1">
+    update t_senssor_monitor1
+    set SensorNo = #{sensorno,jdbcType=VARCHAR},
+      NodeID = #{nodeid,jdbcType=VARCHAR},
+      TimeStamp = #{timestamp,jdbcType=VARCHAR},
+      SampleRate = #{samplerate,jdbcType=DOUBLE},
+      NumSamples = #{numsamples,jdbcType=DOUBLE},
+      MonitoringValue1 = #{monitoringvalue1,jdbcType=VARCHAR},
+      Spectrum1 = #{spectrum1,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+	  	<property name="javaFileEncoding" value="UTF-8"/>
+		
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+
+        <!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
+        <plugin type="owl2vowl.knowledgebase.plugin.SerializablePlugin">
+            <property name="suppressJavaInterface" value="false"/>
+        </plugin>
+		
+		<!-- Java模型生成equals和hashcode方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		
+		<!--去除生成代码的时候的注释  -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!--配置数据库连接 -->
+		<jdbcConnection 
+			driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://39.106.128.34:3306/repository" 
+			userId="admin"
+			password="admin">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 指定java bean生成的位置,即java实体的位置 -->
+		<javaModelGenerator 
+			targetPackage="owl2vowl.knowledgebase.entity"
+			targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 指定 sql映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper" 
+			targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 指定dao接口生成的位置 ，mapper接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="owl2vowl.knowledgebase.dao" 
+			targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+<!--		<table tableName="entity_info" domainObjectName="EntityInfo"></table>
+		<table tableName="entity_relation" domainObjectName="EntityRelation"></table> 
+		<table tableName="kp_kc_relation" domainObjectName="KpkcRelation"></table> 
+		<table tableName="kpinfo" domainObjectName="Kpinfo"></table> 
+		<table tableName="kw_category" domainObjectName="KwCategory"></table> 
+		<table tableName="kw_check" domainObjectName="KwCheck"></table> 
+		<table tableName="kw_document" domainObjectName="KwDocument"></table> 
+		<table tableName="kw_document_lable" domainObjectName="KwDocumentLable"></table> 
+		<table tableName="kw_document_pageview" domainObjectName="KwDocumentPageview"></table> 
+		<table tableName="kw_document_release" domainObjectName="kwDocumentRelease"></table> 
+		<table tableName="kw_download_log" domainObjectName="KwDownloadLog"></table>
+		<table tableName="kw_file_log" domainObjectName="KwFileLog"></table> 
+		<table tableName="owlfile_info" domainObjectName="OwlFileInfo"></table>
+		<table tableName="owlindex" domainObjectName="OwlIndex"></table> 
+		<table tableName="pageinfo" domainObjectName="PageInfo"></table> 
+		<table tableName="portletcomponentinfo" domainObjectName="PortletComponentInfo"></table> 
+		<table tableName="portletinfo" domainObjectName="PortletInfo"></table>
+		<table tableName="kw_user" domainObjectName="User"></table>
+		<table tableName="kw_department" domainObjectName="Department"></table>
+		<table tableName="kw_document" domainObjectName="KwDocument"></table> 
+		<table tableName="kw_office_to_pdf" domainObjectName="KwOfficeToPdf"></table> 
+		<table tableName="kw_document_type" domainObjectName="KwDocumentType"></table> 
+		<table tableName="kw_document_label_middle" domainObjectName="KwDocumentLabelMiddle"></table> 
+		<table tableName="kw_department" domainObjectName="Department"></table>
+		-->
+		
+	</context>
+</generatorConfiguration>

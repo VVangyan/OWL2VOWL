@@ -1,0 +1,47 @@
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 8086
+    connection-timeout: 5000
+    context-path: /knowledge
+spring:
+    # 环境 dev|test|pro
+    profiles:
+        active: dev
+    # jackson时间格式化
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    http:
+        multipart:
+            max-file-size: 100MB
+            max-request-size: 100MB
+            enabled: true
+        encoding:
+          force: true
+          charset: UTF-8
+          enabled: true
+    resources: # 指定静态资源的路径
+        static-locations: classpath:/static/,classpath:/views/
+        
+    thymeleaf: #thymeleaf 模板
+        cache: false
+        mode: LEGACYHTML5    #LEGACYHTML5需要搭配一个额外的库NekoHTML才可用
+        prefix: classpath:/views/
+    # 开启切面日志
+    aop:
+        proxy-target-class: true
+# Mybatis配置
+mybatis:
+    mapperLocations: classpath:mapper/**/*.xml
+    configLocation: classpath:mybatis.xml
+    
+#file upload  path
+upload-path: C:\\uploadDir\\
+
+#office to pdf path
+officeToPdf:
+  dir: C:\\officeToPdfDir\\    

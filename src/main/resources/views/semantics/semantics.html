@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>语义搜索</title>
+    <!--公用样式 start-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="../plugins/layer/skin/default/layer.css?v=3.0.11110" id="layuicss-skinlayercss">
+    <script src="../libs/bootstrap.min.js"></script>
+    <script src="../libs/vue.min.js"></script>
+    <script src="../libs/validator.min.js"></script>
+    <script src="../plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
+    <!--公用样式 end-->
+
+    <!--日历插件css-->
+    <link rel="stylesheet" href="../libs/jedate-6.5.0/skin/jedate.css">
+    <!--文件上传插件css-->
+    <link rel="stylesheet" href="../plugins/easyUpload.js/easy-upload.css">
+    <!--当前页面样式-->
+    <link rel="stylesheet" href="../css/semantics/semantics.css">
+    <!--<script src="../js/common.js"></script>-->
+    <!--日历插件-->
+    <script src="../libs/jedate-6.5.0/src/jedate.js"></script>
+    <script src="../plugins/easyUpload.js/vendor/jquery.cookie-1.4.1.min.js"></script>
+    <!--公用js  end-->
+    <!--文件上传插件-->
+    <script src="../plugins/easyUpload.js/easyUpload.js"></script>
+</head>
+<body>
+<div class="contents">
+	<div class="space_width_30px"></div>
+	<div class="contents_center">
+		<div class="contents_search_div">
+			<div class="contents_search_input">
+				<input type="text" class="searchName" name="searchName"/>
+			</div>
+			<div class="contents_search_Button" id="search_Button">
+				<div class="search_button_icon"></div>
+				<div class="search_button_text">搜索</div>
+			</div>
+		</div>
+		<div class="contents_searchType_div">
+			<div class="searchType_divs">
+				<div class="searchType_list">
+					<input id="r1" type="radio" value="0" name="searchType" checked >近义词</input>
+				</div>
+				<div class="searchType_list">
+					<input id="r1" type="radio" value="1" name="searchType">反义词</input>
+				</div>
+				<div class="searchType_list">
+					<input id="r1" type="radio" value="2" name="searchType">父级类</input>
+				</div>
+				<div class="searchType_list">
+					<input id="r1" type="radio" value="3" name="searchType">子级类</input>
+				</div>
+			</div>
+		</div>
+		<div class="contents_recommend_div">
+			<div class="recommend_left_title">推荐：</div>
+			<div class="recommend_right_list">
+				<div class="recommend_list">常用金属材料</div>
+				<div class="recommend_list">塑料材料介绍</div>
+				<div class="recommend_list">合成材料分析</div>
+				<div class="recommend_list">常用金属材料</div>
+			</div>
+		</div>
+		<div class="contents_filelist_div" id="contents_filelist_div">
+			<div class="filelist_title_div">
+				<div class="filelist_title">文件名</div>
+				<div class="filelist_title">大小</div>
+				<div class="filelist_title">上传时间</div>
+				<div class="filelist_title">下载量/次</div>
+				<div class="filelist_title">操作</div>
+			</div>
+			<div id="file_List">
+				<div class="filelist_value_div">
+					<div class="filelist_value">金属合金、高合金金属</div>
+					<div class="filelist_value">458KB</div>
+					<div class="filelist_value">2018.04.05</div>
+					<div class="filelist_value">56</div>
+					<div class="filelist_value caozuo">查看</div>
+				</div>
+				<div class="filelist_value_div">
+					<div class="filelist_value1">常用金属材料性能</div>
+					<div class="filelist_value1">358KB</div>
+					<div class="filelist_value1">2018.04.05</div>
+					<div class="filelist_value1">48</div>
+					<div class="filelist_value1 caozuo">查看</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="contents_page_div">
+			<div class="space_felx"></div>
+			<div id="pageDiv" class="pageDiv">
+				<div class="page_num" id="firstPage">首页</div>
+				<div class="page_num" id="previousPage"><上一页</div>
+				<div class="pages" id="pages">
+					<div class="page_num">1</div>
+					<div class="page_num">2</div>
+					<div class="page_num">3</div>
+				</div>
+				<div class="page_num" id="nextPage">>下一页</div>
+				<div class="page_num" id="lastPage">尾页</div>
+			</div>
+			<div class="space_felx"></div>
+		</div>
+	</div>
+	<div class="space_width_30px"></div>
+
+</div>
+</body> 
+<script src="../js/semantics/semantics.js"></script>
+</html>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="owl2vowl.knowledgebase.dao.KwDocumentLableMapper">
+  <resultMap id="BaseResultMap" type="owl2vowl.knowledgebase.entity.KwDocumentLable">
+    <result column="LABLE_ID" jdbcType="INTEGER" property="lableId" />
+    <result column="LABLE_NAME" jdbcType="VARCHAR" property="lableName" />
+    <result column="LABLE_PREID" jdbcType="INTEGER" property="lablePreid" />
+    <result column="LABLE_DESC" jdbcType="VARCHAR" property="lableDesc" />
+    <result column="LABLE_DATE" jdbcType="DATE" property="lableDate" />
+    <result column="LABLE_SORT" jdbcType="INTEGER" property="lableSort" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="deparmentName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    LABLE_ID, LABLE_NAME, LABLE_PREID, LABLE_DESC, LABLE_DATE, LABLE_SORT
+  </sql>
+  <select id="selectByExample" parameterType="owl2vowl.knowledgebase.entity.KwDocumentLableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kw_document_lable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="owl2vowl.knowledgebase.entity.KwDocumentLableExample">
+    delete from kw_document_lable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="owl2vowl.knowledgebase.entity.KwDocumentLable">
+    insert into kw_document_lable (LABLE_ID, LABLE_NAME, LABLE_PREID, 
+      LABLE_DESC, LABLE_DATE, LABLE_SORT, USER_NAME, DEPARTMENT_NAME
+      )
+    values (#{lableId,jdbcType=INTEGER}, #{lableName,jdbcType=VARCHAR}, #{lablePreid,jdbcType=INTEGER}, 
+      #{lableDesc,jdbcType=VARCHAR}, #{lableDate,jdbcType=DATE}, #{lableSort,jdbcType=INTEGER},
+      #{userName,jdbcType=VARCHAR}, #{deparmentName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="owl2vowl.knowledgebase.entity.KwDocumentLable">
+    insert into kw_document_lable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lableId != null">
+        LABLE_ID,
+      </if>
+      <if test="lableName != null">
+        LABLE_NAME,
+      </if>
+      <if test="lablePreid != null">
+        LABLE_PREID,
+      </if>
+      <if test="lableDesc != null">
+        LABLE_DESC,
+      </if>
+      <if test="lableDate != null">
+        LABLE_DATE,
+      </if>
+      <if test="lableSort != null">
+        LABLE_SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lableId != null">
+        #{lableId,jdbcType=INTEGER},
+      </if>
+      <if test="lableName != null">
+        #{lableName,jdbcType=VARCHAR},
+      </if>
+      <if test="lablePreid != null">
+        #{lablePreid,jdbcType=INTEGER},
+      </if>
+      <if test="lableDesc != null">
+        #{lableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="lableDate != null">
+        #{lableDate,jdbcType=DATE},
+      </if>
+      <if test="lableSort != null">
+        #{lableSort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="owl2vowl.knowledgebase.entity.KwDocumentLableExample" resultType="java.lang.Long">
+    select count(*) from kw_document_lable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update kw_document_lable
+    <set>
+      <if test="record.lableId != null">
+        LABLE_ID = #{record.lableId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lableName != null">
+        LABLE_NAME = #{record.lableName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lablePreid != null">
+        LABLE_PREID = #{record.lablePreid,jdbcType=INTEGER},
+      </if>
+      <if test="record.lableDesc != null">
+        LABLE_DESC = #{record.lableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lableDate != null">
+        LABLE_DATE = #{record.lableDate,jdbcType=DATE},
+      </if>
+      <if test="record.lableSort != null">
+        LABLE_SORT = #{record.lableSort,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update kw_document_lable
+    set LABLE_NAME = #{record.lableName,jdbcType=VARCHAR},
+      LABLE_PREID = #{record.lablePreid,jdbcType=INTEGER},
+      LABLE_DESC = #{record.lableDesc,jdbcType=VARCHAR},
+      LABLE_DATE = #{record.lableDate,jdbcType=DATE},
+      LABLE_SORT = #{record.lableSort,jdbcType=INTEGER}
+    WHERE LABLE_ID = #{record.lableId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectPathResult" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from kw_document_lable
+    where 1=1
+  </select>
+
+  <select id="getLableId" resultType="owl2vowl.knowledgebase.entity.KwDocumentLable" parameterType="java.lang.Integer">
+    select
+    LABLE_ID, LABLE_NAME, LABLE_PREID, LABLE_DESC, LABLE_DATE, LABLE_SORT,
+    (select LABLE_NAME as lablePreName from kw_document_lable where LABLE_ID =
+    (
+    select
+        LABLE_PREID
+        from kw_document_lable
+        where 1=1
+        and LABLE_ID = #{_parameter}
+    )) lablePreName
+    from kw_document_lable
+    where 1=1
+    and LABLE_ID = #{_parameter}
+  </select>
+
+  <delete id="deleteLableId" parameterType="java.lang.Integer">
+    delete from kw_document_lable
+    where LABLE_ID = #{_parameter}
+  </delete>
+
+  <delete id="deleteLablePreId" parameterType="java.lang.Integer">
+    delete from kw_document_lable
+    where LABLE_PREID = #{_parameter}
+  </delete>
+
+  <!--标签分页查询-->
+  <select id="selectByPageLable" parameterType="owl2vowl.knowledgebase.entity.KwDocumentLable" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kw_document_lable
+    where 1=1
+    order by LABLE_DATE desc
+  </select>
+</mapper>
